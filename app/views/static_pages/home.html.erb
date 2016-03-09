@@ -13,26 +13,28 @@
 	</div>
 
 	<div class="row">
-		<div class="contact col-xs-offset-4 col-sm-offset-0">
-			 <%= image_tag " " %><p> 400 BRANNAN ST. SUITE 204</p> </span>
-			 <p> SAN FRANCISCO, CA 94107 </p>
-			 <%= image_tag " " %><p> 405 - 503 - 1678 </p>
-			 <%= image_tag " " %><p> mksokc@gmail.com </p>
+		<div class="contact">
+			 <div>
+			 	<span><%= image_tag "location.png", class: "icon" %></span><span>400 BRANNAN ST. SUITE 204  </span>
+			  <p> SAN FRANCISCO, CA 94107</p> 
+			  </div>
+			 <div><span><%= image_tag "phone.png", class: "icon" %>405 - 503 - 1678 </span></div>
+			 <div><span><%= image_tag "mail.png", class: "icon" %> mksokc@gmail.com </span></div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="services col-xs-offset-2 col-sm-offset-0">
-			<h4> Large Format Printing Services </h4>
-			<%= image_tag " " %> <p> OVERSIZED INKJET PRINTS </p>
-			<%= image_tag " " %> <p> PHOTOGRAPHY </p>
-			<%= image_tag " " %> <p> ART SERIES </p>
-			<%= image_tag " " %> <p> SHORT RUN POSTERS </p>
-			<%= image_tag " " %> <p> FULL COLOR AND 2 COLOR "TRASH" STICKERS </p>
-			<%= image_tag " " %> <p> WALLPAPER </p>
-			<%= image_tag " " %> <p> TEXTILE ART PRINTS </p>
-			<%= image_tag " " %> <p> (NATURAL CANVAS, SILK, COTTON, MESH BANNERS) </p>
-			<%= image_tag " " %> <p> MORE!!! </p>
+		<div class="services">
+			<h1> Large Format Printing Services </h1>
+			<span> <%= image_tag "check.png", class: "icon2" %>  OVERSIZED INKJET PRINTS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>  PHOTOGRAPHY </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>  ART SERIES </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> SHORT RUN POSTERS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>FULL COLOR AND 2 COLOR "TRASH" STICKERS </span> <br>
+			<span><%= image_tag "check.png", class: "icon2" %> WALLPAPER </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> TEXTILE ART PRINTS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> (NATURAL CANVAS, SILK, COTTON, MESH BANNERS) </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> MORE!!!</span> <br>
 		</div>
 	</div>
 </div>
@@ -196,8 +198,12 @@
 
 	<div class="row">
 		<div class="right3">
-			<p> Follow us On Social Media <p>
-			<span> <p> Insta </p> <p> Face </p> <p> Twit </p> </span>
+			<h4> Follow us On Social Media </h4>
+			<ul>
+				<li> <a href="https://www.facebook.com/strangecessation"><%= image_tag "facebook.png", class: "icon" %></a></li>
+				<li> <a href="#"><%= image_tag "twitter.png", class: "icon" %></a></li>
+				<li><a href="https://www.instagram.com/strange_cessation_/"><%= image_tag "instagram.png", class: "icon" %></a></li>
+			</ul>
 		</div>
 	</div>
 </div>

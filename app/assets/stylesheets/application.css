@@ -8,6 +8,14 @@
 	margin-top: 20px;
 	text-align: center;
 }
+.icon {
+	height: 10%;
+	width: 10%;
+}
+.icon2 {
+	height: 6%;
+	width: 6%;
+}
 
 .leftsection {
 	padding-left: 50px;
@@ -26,6 +34,9 @@
 .mainsection {
 	text-align: center;
 	margin-top: 10px;
+}
+.contact {
+
 }
 .mimages {
 	height: 100%;
@@ -87,12 +98,27 @@
 	width: 95px;
 }
 
+.right1 {
+	margin-top: 120px;
+}
+
+.right2 {
+	margin-top: 40px;
+}
+
 .right3 {
+	margin-top: 40px;
 	text-align: center;
 }
 
 .right3 p {
 	font-style: bold;
+}
+
+.right3 li {
+	padding-top: 10px;
+	padding-right: 10px;
+	display: inline;
 }
 
 .lefthq {
