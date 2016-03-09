@@ -7,17 +7,17 @@
 
 <div class="leftsection col-xs-12 col-sm-2">
 	<div class="row">
-		<div class="logo">
+		<div class="logo img-responsive">
 			<%= image_tag "LOGO.jpg", class: "limg" %>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="contact col-xs-offset-4 col-sm-offset-0">
-			<%= image_tag " " %> <span class="glyphicon-search"> <p> 400 BRANNAN ST. SUITE 204</p> </span>
-			<%= image_tag " " %> <p> SAN FRANCISCO, CA 94107 </p>
-			<%= image_tag " " %> <p> 405 - 503 - 1678 </p>
-			<%= image_tag " " %> <p> mksokc@gmail.com </p>
+			 <%= image_tag " " %><p> 400 BRANNAN ST. SUITE 204</p> </span>
+			 <p> SAN FRANCISCO, CA 94107 </p>
+			 <%= image_tag " " %><p> 405 - 503 - 1678 </p>
+			 <%= image_tag " " %><p> mksokc@gmail.com </p>
 		</div>
 	</div>
 
@@ -42,56 +42,50 @@
     	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
 	});
 		imagesArray = [
-			{	id: '1',
-				path: '<%= image_tag 'ematte.jpg', class: "mimages" %>'
-			},
 			{	id: '2',
-				path: '<%= image_tag 'hweight.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'hweight2.jpg', class: "mimages" %>'
 			},
 			{	id: '3',
-				path: '<%= image_tag 'image1.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'image1r.jpg', class: "mimages" %>'
 			},
 			{	id: '4',
-				path: '<%= image_tag 'image2.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'image2r.jpg', class: "mimages" %>'
 			},
 			{	id: '5',
-				path: '<%= image_tag 'JustinHager.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'JustinHagerr.jpg', class: "mimages" %>'
 			},
 			{	id: '6',
-				path: '<%= image_tag 'luster.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'lusterr.jpg', class: "mimages" %>'
 			},
 			{	id: '7',
-				path: '<%= image_tag 'luster2.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'luster2r.jpg', class: "mimages" %>'
 			},
 			{	id: '8',
-				path: '<%= image_tag 'metallic.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'metallicr.jpg', class: "mimages" %>'
 			},
 			{	id: '9',
-				path: '<%= image_tag 'metallic22.jpg', class: "mimages" %>'
-			},
-			{	id: '10',
-				path: '<%= image_tag 'semimatte.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'metallic22r.jpg', class: "mimages" %>'
 			},
 			{	id: '11',
-				path: '<%= image_tag 'shannon.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'shannonr.jpg', class: "mimages" %>'
 			},
 			{	id: '12',
-				path: '<%= image_tag 'silk.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'silkr.jpg', class: "mimages" %>'
 			},
 			{	id: '13',
-				path: '<%= image_tag 'stickers.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'stickersr.jpg', class: "mimages" %>'
 			},
 			{	id: '14',
 				path: '<%= image_tag 'transparency.jpg', class: "mimages" %>'
 			},
 			{	id: '15',
-				path: '<%= image_tag 'vinylstickers(1).jpg', class: "mimages" %>'
+				path: '<%= image_tag 'vinylstickers(1)r.jpg', class: "mimages" %>'
 			},
 			{	id: '16',
-				path: '<%= image_tag 'wallpaper2.jpg', class: "mimages" %>'
+				path: '<%= image_tag 'wallpaper2r.jpg', class: "mimages" %>'
 			}
 			];
-		function changeZ(id) {
+		function changeImage(id) {
 			for( var i = 0; i < imagesArray.length; i++) {
 				if(imagesArray[i].id == id) {
 					document.getElementById('selectedImage').innerHTML = imagesArray[i].path;
@@ -107,53 +101,47 @@
 			</div>
 		</div>
 		<div class='thumbcolumn col-sm-2'>
-			<a  onclick="changeZ(1)">
-				<%= image_tag 'ematte.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(2)">
+				<%= image_tag 'hweight2.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(2)">
-				<%= image_tag 'hweight.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(3)">
+				<%= image_tag 'image1r.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(3)">
-				<%= image_tag 'image1.jpg', class: "thumbs" %><br>
+			<a  onclick="changeImage(4)">
+				<%= image_tag 'image2r.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(4)">
-				<%= image_tag 'image2.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(5)">
+				<%= image_tag 'JustinHagerr.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(5)">
-				<%= image_tag 'JustinHager.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(6)">
+				<%= image_tag 'lusterr.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(6)">
-				<%= image_tag 'luster.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(7)">
+				<%= image_tag 'luster2r.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(7)">
-				<%= image_tag 'luster2.jpg', class: "thumbs" %><br>
+			<a  onclick="changeImage(8)">
+				<%= image_tag 'metallicr.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(8)">
-				<%= image_tag 'metallic.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(9)">
+				<%= image_tag 'metallic22r.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(9)">
-				<%= image_tag 'metallic22.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(11)">
+				<%= image_tag 'shannonr.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(10)">
-				<%= image_tag 'semimatte.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(12)">
+				<%= image_tag 'silkr.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(11)">
-				<%= image_tag 'shannon.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(13)">
+				<%= image_tag 'stickersr.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(12)">
-				<%= image_tag 'silk.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeZ(13)">
-				<%= image_tag 'stickers.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeZ(14)">
+			<a  onclick="changeImage(14)">
 				<%= image_tag 'transparency.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(15)">
-				<%= image_tag 'vinylstickers(1).jpg', class: "thumbs" %>
+			<a  onclick="changeImage(15)">
+				<%= image_tag 'vinylstickers(1)r.jpg', class: "thumbs" %>
 			</a>
-			<a  onclick="changeZ(16)">
-				<%= image_tag 'wallpaper2.jpg', class: "thumbs" %>
+			<a  onclick="changeImage(16)">
+				<%= image_tag 'wallpaper2r.jpg', class: "thumbs" %>
 			</a>
 
 		</div>
@@ -211,13 +199,6 @@
 			<p> Follow us On Social Media <p>
 			<span> <p> Insta </p> <p> Face </p> <p> Twit </p> </span>
 		</div>
-	</div>
-</div>
-
-<div class="container">
-<hr>
-	<div class="footer col-xs-offset-10">
-		Strange Cessation
 	</div>
 </div>
 
