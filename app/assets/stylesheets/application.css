@@ -1,0 +1,174 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+.section1 {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.leftsection {
+	padding-left: 50px;
+	margin-top: 5px;
+}
+
+.services h4 {
+	font-size: 20px;
+	font-style: bold;
+	font-weight: 2px;
+}
+
+.services li {
+	list-style: none;
+}
+.mainsection {
+	text-align: center;
+	margin-top: 10px;
+	height: 100%;
+}
+
+.inner {
+	height: 100%;
+}
+
+.inner li {
+	list-style: none;
+}
+
+.small {
+	height: 50%;
+	width: 50%;
+}
+.limg {
+
+	width: 80%;
+	height: 80%;
+}
+
+.himg {
+	width: 40%;
+	height: 40%;
+}
+
+.rightbuttons {
+	height: 55%;
+	width: 55%;
+}
+
+.closebutton {
+	height: 50px;
+	width: 75px;
+	float: right;
+}
+
+.submitbutton {
+	margin-top: 90px;
+	height: 50px;
+	width: 95px;
+}
+
+.right3 {
+	text-align: center;
+}
+
+.right3 p {
+	font-style: bold;
+}
+
+.lefthq {
+	height: 100%;
+}
+
+.qsect1 {
+	text-align: center;
+}
+
+.qsect1 h3 {
+	font-style: bold;
+	font-size: 35px;
+}
+.qsect2 {
+	text-align: center;
+}
+
+.qsect2 p {
+	color: black;
+	font-size: 30px;
+}
+
+.qsect3 {
+	height: 100%;
+
+}
+
+.qsect3 {
+	color: black;
+	font-size: 20px;
+}
+
+.qsect4 {
+	margin-top: 40px;
+}
+
+.image {
+	height: 700px;
+	width: 700px;
+}
+
+.ithumb {
+	height: 150px;
+	width: 150px;
+}
+
+.modal1{
+		width: 95%;
+	}
+
+.modal2 {
+	width: 95%;
+}
+
+.forminput {
+	
+	width: 60%;
+}
+
+.forminputsm {
+	
+	width: 20%;
+}
+
+.slides ul li {
+	display: block !important;
+}
+
+.psleft {
+	text-align: center;
+}
+.psimage {
+	height: 250px;
+	width: 250px;
+	padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 400px) {
+
+	.himg {
+		width: 100% ;
+		height: 100% ;
+	}
+}
+
