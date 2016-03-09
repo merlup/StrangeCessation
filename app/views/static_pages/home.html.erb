@@ -1,25 +1,4 @@
-	<script type="text/javascript"> 
-$(window).load(function() {
-  // The slider being synced must be initialized first
-  $('#carousel').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    itemWidth: 210,
-    itemMargin: 5,
-    asNavFor: '#slider'
-  });
 
-  $('#slider').flexslider({
-    
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    sync: "#carousel2"
-  });
-});
-</script>
 <div class="section1">
 	<div class="heading">
 		<%= image_tag "HEADER.jpg", class: "himg" %>
@@ -58,38 +37,126 @@ $(window).load(function() {
 	</div>
 </div>
 <div class="mainsection col-xs-12 col-sm-8">
-		<div class='mainimage col-sm-10'>
-			<div id="slider" class="flexslider">
-				<ul class="slides">
-					<li><%= image_tag "hweight.jpg", class: 'image'%></li>
-					<li><%= image_tag "image1.jpg", class: 'image' %></li>
-					<li><%= image_tag "image2.jpg", class: 'image' %></li>
-					<li><%= image_tag "luster.jpg", class: 'image' %></li>
-					<li><%= image_tag "luster2.jpg", class: 'image' %></li>
-					<li><%= image_tag "metallic.jpg", class: 'image' %></li>
-					<li><%= image_tag "semimatte.jpg", class: 'image' %></li>
-					<li><%= image_tag "shannon.jpg", class: 'image' %></li>
-					<li><%= image_tag "silk.jpg", class: 'image' %></li>
-					<li><%= image_tag "stickers.jpg", class: 'image' %></li>
-				</ul>
+	<script type="text/javascript">
+	$(document).ready(function setMainImage() {
+    	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
+	});
+		imagesArray = [
+			{	id: '1',
+				path: '<%= image_tag 'ematte.jpg', class: "mimages" %>'
+			},
+			{	id: '2',
+				path: '<%= image_tag 'hweight.jpg', class: "mimages" %>'
+			},
+			{	id: '3',
+				path: '<%= image_tag 'image1.jpg', class: "mimages" %>'
+			},
+			{	id: '4',
+				path: '<%= image_tag 'image2.jpg', class: "mimages" %>'
+			},
+			{	id: '5',
+				path: '<%= image_tag 'JustinHager.jpg', class: "mimages" %>'
+			},
+			{	id: '6',
+				path: '<%= image_tag 'luster.jpg', class: "mimages" %>'
+			},
+			{	id: '7',
+				path: '<%= image_tag 'luster2.jpg', class: "mimages" %>'
+			},
+			{	id: '8',
+				path: '<%= image_tag 'metallic.jpg', class: "mimages" %>'
+			},
+			{	id: '9',
+				path: '<%= image_tag 'metallic22.jpg', class: "mimages" %>'
+			},
+			{	id: '10',
+				path: '<%= image_tag 'semimatte.jpg', class: "mimages" %>'
+			},
+			{	id: '11',
+				path: '<%= image_tag 'shannon.jpg', class: "mimages" %>'
+			},
+			{	id: '12',
+				path: '<%= image_tag 'silk.jpg', class: "mimages" %>'
+			},
+			{	id: '13',
+				path: '<%= image_tag 'stickers.jpg', class: "mimages" %>'
+			},
+			{	id: '14',
+				path: '<%= image_tag 'transparency.jpg', class: "mimages" %>'
+			},
+			{	id: '15',
+				path: '<%= image_tag 'vinylstickers(1).jpg', class: "mimages" %>'
+			},
+			{	id: '16',
+				path: '<%= image_tag 'wallpaper2.jpg', class: "mimages" %>'
+			}
+			];
+		function changeZ(id) {
+			for( var i = 0; i < imagesArray.length; i++) {
+				if(imagesArray[i].id == id) {
+					document.getElementById('selectedImage').innerHTML = imagesArray[i].path;
+					console.log(imagesArray[i]);
+				}
+			}
+			
+		}
+		
+	</script>
+		<div id='mainImage' class="col-sm-10">
+			<div id="selectedImage">
 			</div>
 		</div>
-		<div class="panel col-sm-2">
-			<div id="carousel">
-	        	<ul class="slides">
-					<li><%= image_tag "hweight.jpg", class: 'ithumb' %></li>
-					<li><%= image_tag "image1.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "image2.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "luster.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "luster2.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "metallic.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "semimatte.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "shannon.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "silk.jpg", class: 'ithumb'  %></li>
-					<li><%= image_tag "stickers.jpg", class: 'ithumb' %></li>
-				</ul>
-	        </div>
-	    </div>
+		<div class='thumbcolumn col-sm-2'>
+			<a  onclick="changeZ(1)">
+				<%= image_tag 'ematte.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(2)">
+				<%= image_tag 'hweight.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(3)">
+				<%= image_tag 'image1.jpg', class: "thumbs" %><br>
+			</a>
+			<a  onclick="changeZ(4)">
+				<%= image_tag 'image2.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(5)">
+				<%= image_tag 'JustinHager.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(6)">
+				<%= image_tag 'luster.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(7)">
+				<%= image_tag 'luster2.jpg', class: "thumbs" %><br>
+			</a>
+			<a  onclick="changeZ(8)">
+				<%= image_tag 'metallic.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(9)">
+				<%= image_tag 'metallic22.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(10)">
+				<%= image_tag 'semimatte.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(11)">
+				<%= image_tag 'shannon.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(12)">
+				<%= image_tag 'silk.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(13)">
+				<%= image_tag 'stickers.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(14)">
+				<%= image_tag 'transparency.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(15)">
+				<%= image_tag 'vinylstickers(1).jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeZ(16)">
+				<%= image_tag 'wallpaper2.jpg', class: "thumbs" %>
+			</a>
+
+		</div>
 	</div> 
 
 <div class="rightsection col-xs-12 col-sm-2">
