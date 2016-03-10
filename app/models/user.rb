@@ -1,4 +1,5 @@
  class User < ActiveRecord::Base
+
   	mount_uploader :avatar, AvatarUploader
   	mount_uploader :image, ImageUploader
 	validates :username, presence: true, length: { maximum: 50 }
@@ -7,7 +8,7 @@
 				format: {with: VALID_EMAIL_REGEX },
 				uniqueness: { case_sensitive: false }
 	has_secure_password
-	validates :password, presence: true
+  acts_as_reader
 
 	 def User.digest(string)
 	    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

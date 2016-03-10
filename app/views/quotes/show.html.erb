@@ -1,4 +1,5 @@
 <% if logged_in? %>
+  <% @quote.mark_as_read! :for => current_user %>
   <p id="notice"><%= notice %></p>
 
   <p>
@@ -112,10 +113,13 @@
     <strong>Question14:</strong>
     <%= @quote.question14 %>
   </p>
+  <%= image_tag  @quote.image%>
+  
 
 
 
 
+  <%= link_to "Download Printable Quote (PDF)", quote_path(@quote, :format => "pdf") %>
   <%= link_to 'Edit', edit_quote_path(@quote) %> |
   <%= link_to 'Back', quotes_path %>
 <% else %>

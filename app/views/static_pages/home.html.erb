@@ -1,10 +1,4 @@
 
-<div class="section1">
-	<div class="heading">
-		<%= image_tag "HEADER.jpg", class: "himg" %>
-	</div>
-</div>
-
 <div class="leftsection col-xs-12 col-sm-2">
 	<div class="row">
 		<div class="logo img-responsive">
@@ -42,12 +36,7 @@
 	<script type="text/javascript">
 		$(document).ready(function setMainImage() {
 	    	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
-	    	
 		});
-
-		function showFields() {
-			document.getElementById("lgfields").style.visibility = "visible"; 
-		}
 
 		imagesArray = [
 			{	id: '2',
@@ -93,6 +82,7 @@
 				path: '<%= image_tag 'wallpaper2r.jpg', class: "mimages" %>'
 			}
 			];
+
 		function changeImage(id) {
 			for( var i = 0; i < imagesArray.length; i++) {
 				if(imagesArray[i].id == id) {

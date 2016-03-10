@@ -11,6 +11,7 @@ states = (['California','New York', 'Wisconsin'])
 regions =(['USA','Other'])
 addresses = (['1234 4th st', '1234 5th st','2352 6th st', '56743 9th st'])
 emails = (['email1@email.com', 'email2@email.com','email3@email.com','email4@email.com'])
+quoteimages = (['image1.png', 'image2.png', 'image3.png'])
 question1 =(['answer1', 'answer2', 'answer3'])
 question2 =(['answer1', 'answer2', 'answer3'])
 question3 =(['answer1', 'answer2', 'answer3'])
@@ -27,21 +28,22 @@ question13 =(['answer1', 'answer2', 'answer3'])
 question14 =(['answer1', 'answer2', 'answer3'])
 usernames = (['administrator', 'guest'])
 useremails = (['admin@email.com', 'guest@email.com'])
-userpasswords = ('secret')
+userpasswords = (['secret'])
 useravatar = (['admin.png', 'guest.png'])
+
 
 User.create(
 	username: usernames.first,
 	email: useremails.first,
 	password: userpasswords.first,
-	avatar: useravatar.first
+	avatar: open('app/assets/images/admin.png')
 )
 
 User.create(
 	username: usernames.second,
 	email: useremails.second,
 	password: userpasswords.first,
-	avatar: useravatar.second
+	avatar: open('app/assets/images/guest.png')
 )
 
 
@@ -66,7 +68,8 @@ Quote.create(
 	question11: question11.first,
 	question12: question12.first,
 	question13: question13.first,
-	question14: question14.first
+	question14: question14.first,
+	image: open('app/assets/images/image1.png')
 	)
 Quote.create(
 	name: 'Jane',
@@ -88,7 +91,8 @@ Quote.create(
 	question11: question11.second,
 	question12: question12.second,
 	question13: question13.second,
-	question14: question14.second
+	question14: question14.second,
+	image: open('app/assets/images/image2.png')
 	)
 Quote.create(
 	name: 'Mark',
@@ -110,7 +114,8 @@ Quote.create(
 	question11: question11.third,
 	question12: question12.third,
 	question13: question13.third,
-	question14: question14.third
+	question14: question14.third,
+	image: open('app/assets/images/image3.png')
 	)
 
 

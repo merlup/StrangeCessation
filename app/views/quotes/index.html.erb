@@ -1,7 +1,24 @@
 <% if logged_in? %>
-  <div class="quoteicons">
-    <div class="newquotes">
-      New Quotes <p><% @quotes %></p>
+<div class="quotespage">
+  <div class="quoteicons col-xs-12" ng-app="Quote">
+    <div class="openquotes col-xs-2">
+     <h2><%= @quotes.count %> Open Jobs</h2>
+    </div>
+    <div class="newquotes col-xs-2">
+      <h2>
+      <% @myarray = [] %>
+      <% @trashedquotes = [] %>
+      <% @quotes.each do |x| %> 
+          <% if x.unread?(current_user) == true %>
+                <% @myarray.push(x) %>
+            <% end %>
+          <% end %>
+          
+          <%= @myarray.count %> New Quotes
+       </h2>
+    </div>
+    <div class="deletedquotes col-xs-2">
+      <h2>  Deleted Quotes </h2>
     </div>
   </div>
 
@@ -10,13 +27,20 @@
     <h1> Welcome <%= current_user.username %> </h1>
     <%= image_tag current_user.avatar %>
     <div class="row">
-    <script>
+  <script>
+
+    $(document).ready(function() {
+      document.getElementById('settings').style.visibility = 'hidden'
+    });
+
       function switchSettings() {
-        if(document.getElementById('settings').style.visibility= 'hidden') {
-          console.log(document.getElementById('settings').style.visibility);
+        if(document.getElementById('settings').style.visibility == 'hidden') {
           document.getElementById('settings').style.visibility = "visible"
+        } else {
+          document.getElementById('settings').style.visibility = 'hidden'
         };
       }
+
     </script>
       <a onclick="switchSettings()"> Settings </a>
       <div id="settings">
@@ -24,17 +48,24 @@
       </div>
     </div>
   </div>
-  <div class="quotes col-xs-10 col-md-8">
+  <div class="quotes col-xs-10 col-md-8" ng-controller="Quotes">
+  <ng-repeat=for quotes in quotes>
   <% @quotes.each do |quote| %>
     <div class="quote">
       <div class="row">
-        <span> Name: <%= quote.name %> </span>
-        <span> Email: <%= quote.email %> </span>
-        <span> City: <%= quote.city %></span>
-        <%= link_to 'Show', quote %>
-        <%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% if quote.unread?(current_user) %>
+          <span> Unread </span>
+        <% end %>
+          <span> Quote ID: <%= quote.id %> </span>
+          <span> Name: <%= quote.name %> </span>
+          <span> Email: <%= quote.email %> </span>
+          <span> City: <%= quote.city %></span>
+          <%= link_to 'Show', quote %>
+          <%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure you want to send to trash?' } %>
+        
       </div>
     </div>
   <% end %>
   </div>
+</div>
 <% end %>

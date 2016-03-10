@@ -191,12 +191,40 @@
 	padding-bottom: 20px;
 }
 
-#lgfields {
-	visibility: hidden;
+.quotespage {
+	height: 70vh;
 }
 
-#settings {
-	visibility: hidden;
+.quoteicons {
+	
+}
+.openquotes {
+	background-color: green;
+	height: 100px;
+	width: 100px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 20px;
+}
+
+.newquotes{
+	background-color: yellow;
+	height: 100px;
+	width: 100px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 20px;
+}
+.deletedquotes{
+	background-color: red;
+	height: 100px;
+	width: 100px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 20px;
 }
 
 .loginI {
@@ -205,12 +233,33 @@
 
 .loginIcon {
 	padding-left: 5px;
-	
+
 }
 
 .loginImage {
 	height: 20px;
 	width: 20px;
+}
+
+@media print {
+  body {
+    background-color: #FFF;
+  }
+
+  #container {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  
+  #line_items {
+    page-break-before: always;
+  }
+  
+  #pdf_link {
+    display: none;
+  }
 }
 
 
