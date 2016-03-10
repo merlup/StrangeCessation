@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, intial-scale=1, maximum-scale=1">
 </head>
 <body>
 	<div class="container-fluid">
@@ -13,6 +14,26 @@
 </body>
 <hr>
 	<div class="footer col-xs-offset-10">
-		Strange Cessation
+		<span>Strange Cessation</span>
+		<% if !logged_in? %>
+			<div class="loginI">
+				<a onclick="showFields()" >
+					<%= image_tag "login.png", class: "loginIcon loginImage" %>
+				</a> 
+			</div>
+			<div id="login">
+				
+				<div id="lgfields">
+				<%= render partial: "sessions/new" %>
+				</div>
+			</div>
+		<% else %>
+			<div class="navigation">
+					<%= link_to "Quotes", quotes_path %>
+					<%= link_to "Users", users_path %>
+	    			<%= link_to "Log out", logout_path, method: "delete" %>
+	  			
+	  		</div>
+		<% end %>
 	</div>
 </html>

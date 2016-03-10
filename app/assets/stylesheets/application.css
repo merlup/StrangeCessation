@@ -125,6 +125,15 @@
 	height: 100%;
 }
 
+.pstable {
+	text-align: center;
+}
+
+.pstable th {
+	text-align: center;
+	font-style: bold;
+}
+
 .qsect1 {
 	text-align: center;
 }
@@ -180,6 +189,28 @@
 	height: 250px;
 	width: 250px;
 	padding-bottom: 20px;
+}
+
+#lgfields {
+	visibility: hidden;
+}
+
+#settings {
+	visibility: hidden;
+}
+
+.loginI {
+	padding-left: 40px;
+}
+
+.loginIcon {
+	padding-left: 5px;
+	
+}
+
+.loginImage {
+	height: 20px;
+	width: 20px;
 }
 
 

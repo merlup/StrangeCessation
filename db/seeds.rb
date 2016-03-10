@@ -28,17 +28,20 @@ question14 =(['answer1', 'answer2', 'answer3'])
 usernames = (['administrator', 'guest'])
 useremails = (['admin@email.com', 'guest@email.com'])
 userpasswords = ('secret')
+useravatar = (['admin.png', 'guest.png'])
 
 User.create(
 	username: usernames.first,
 	email: useremails.first,
-	password: userpasswords.first
+	password: userpasswords.first,
+	avatar: useravatar.first
 )
 
 User.create(
 	username: usernames.second,
 	email: useremails.second,
-	password: userpasswords.first
+	password: userpasswords.first,
+	avatar: useravatar.second
 )
 
 

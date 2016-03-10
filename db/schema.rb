@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302220032) do
+ActiveRecord::Schema.define(version: 20160309232126) do
 
   create_table "quotes", force: :cascade do |t|
     t.string   "name"
@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 20160302220032) do
     t.string   "email"
     t.string   "password"
     t.string   "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.string   "image"
   end
 
 end

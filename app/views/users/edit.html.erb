@@ -1,6 +1,8 @@
-<h1>Editing User</h1>
+<% if logged_in? && current_user.id == @user.id || logged_in? && current_user.username == "administrator" %>
+	<h1>Editing User</h1>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+	<%= link_to 'Show', @user %> |
+	<%= link_to 'Back', users_path %>
+<% end %>

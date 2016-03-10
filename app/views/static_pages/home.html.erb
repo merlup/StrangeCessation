@@ -40,9 +40,15 @@
 </div>
 <div class="mainsection col-xs-12 col-sm-8">
 	<script type="text/javascript">
-	$(document).ready(function setMainImage() {
-    	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
-	});
+		$(document).ready(function setMainImage() {
+	    	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
+	    	
+		});
+
+		function showFields() {
+			document.getElementById("lgfields").style.visibility = "visible"; 
+		}
+
 		imagesArray = [
 			{	id: '2',
 				path: '<%= image_tag 'hweight2.jpg', class: "mimages" %>'
@@ -91,7 +97,6 @@
 			for( var i = 0; i < imagesArray.length; i++) {
 				if(imagesArray[i].id == id) {
 					document.getElementById('selectedImage').innerHTML = imagesArray[i].path;
-					console.log(imagesArray[i]);
 				}
 			}
 			
