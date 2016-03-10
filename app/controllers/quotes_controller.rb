@@ -1,26 +1,32 @@
 class QuotesController < ApplicationController
   before_action :set_quote, only: [:show, :edit, :update, :destroy]
-
+  respond_to :html, :json
   # GET /quotes
   # GET /quotes.json
   def index
     @quotes = Quote.all
+    respond_with = @quotes
+     # respond_with(@quotes) do |format|
+     #  format.json { render :json => @quote.as_json }
+     #  format.html
+    # end
   end
 
   # GET /quotes/1
   # GET /quotes/1.json
   def show #shows some material
-    @quote = Quote.find(params[:id])
-     respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = QuotePdf.new(@quote)
-        send_data pdf.render, filename: "quote_#{@quote.id}",
-                              type: "application/pdf",
-                              disposition: "inline"
+    respond_with(@quote.as_json)
+    # @quote = Quote.find(params[:id])
+    #  respond_to do |format|
+    #   format.html
+      # format.pdf do
+      #   pdf = QuotePdf.new(@quote)
+      #   send_data pdf.render, filename: "quote_#{@quote.id}",
+      #                         type: "application/pdf",
+      #                         disposition: "inline"
 
-      end
-    end
+      # end
+    # end
   end
   # GET /quotes/new
   def new
@@ -65,10 +71,11 @@ class QuotesController < ApplicationController
   # DELETE /quotes/1.json
   def destroy
     @quote.destroy
-    respond_to do |format|
-      format.html { redirect_to quotes_url, notice: 'Quote was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: { status: :ok}
+    # respond_to do |format|
+    #   format.html { redirect_to quotes_url, notice: 'Quote was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   def addtotrash
@@ -78,6 +85,8 @@ class QuotesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

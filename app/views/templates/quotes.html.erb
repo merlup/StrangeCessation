@@ -48,11 +48,11 @@
       </div>
     </div>
   </div>
-  <div>
+  <div ng-app="QuotesApp">
     <div class="quotes col-xs-10 col-md-8" ng-controller="QuotesCtrl">
     
         <li ng-repeat="quote in quotes">
-          <a href="quotes/{{quote.id}}">
+          <a ui-sref="quotes/{{quote.id}}">
             <span>Quote id: {{quote.id}}</span>
             <span>Name: {{quote.name}}</span>
             <span>Email: {{quote.email}}</span>

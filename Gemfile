@@ -29,18 +29,10 @@ gem 'bootstrap-sass'
 gem 'bcrypt'
 gem 'prawn'
 gem 'unread'
+gem 'responders', '~> 2.0' 
 gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
-
-
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

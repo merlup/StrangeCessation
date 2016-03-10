@@ -1,0 +1,210 @@
+
+<div class="leftsection col-xs-12 col-sm-2">
+	<div class="row">
+		<div class="logo img-responsive">
+			<%= image_tag "LOGO.jpg", class: "limg" %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="contact">
+			 <div>
+			 	<span><%= image_tag "location.png", class: "icon" %></span><span>400 BRANNAN ST. SUITE 204  </span>
+			  <p> SAN FRANCISCO, CA 94107</p> 
+			  </div>
+			 <div><span><%= image_tag "phone.png", class: "icon" %>405 - 503 - 1678 </span></div>
+			 <div><span><%= image_tag "mail.png", class: "icon" %> mksokc@gmail.com </span></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="services">
+			<h1> Large Format Printing Services </h1>
+			<span> <%= image_tag "check.png", class: "icon2" %>  OVERSIZED INKJET PRINTS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>  PHOTOGRAPHY </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>  ART SERIES </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> SHORT RUN POSTERS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>FULL COLOR AND 2 COLOR "TRASH" STICKERS </span> <br>
+			<span><%= image_tag "check.png", class: "icon2" %> WALLPAPER </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> TEXTILE ART PRINTS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> (NATURAL CANVAS, SILK, COTTON, MESH BANNERS) </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> MORE!!!</span> <br>
+		</div>
+	</div>
+</div>
+<div class="mainsection col-xs-12 col-sm-8">
+	<script type="text/javascript">
+		$(document).ready(function setMainImage() {
+	    	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
+		});
+
+		imagesArray = [
+			{	id: '2',
+				path: '<%= image_tag 'hweight2.jpg', class: "mimages" %>'
+			},
+			{	id: '3',
+				path: '<%= image_tag 'image1r.jpg', class: "mimages" %>'
+			},
+			{	id: '4',
+				path: '<%= image_tag 'image2r.jpg', class: "mimages" %>'
+			},
+			{	id: '5',
+				path: '<%= image_tag 'JustinHagerr.jpg', class: "mimages" %>'
+			},
+			{	id: '6',
+				path: '<%= image_tag 'lusterr.jpg', class: "mimages" %>'
+			},
+			{	id: '7',
+				path: '<%= image_tag 'luster2r.jpg', class: "mimages" %>'
+			},
+			{	id: '8',
+				path: '<%= image_tag 'metallicr.jpg', class: "mimages" %>'
+			},
+			{	id: '9',
+				path: '<%= image_tag 'metallic22r.jpg', class: "mimages" %>'
+			},
+			{	id: '11',
+				path: '<%= image_tag 'shannonr.jpg', class: "mimages" %>'
+			},
+			{	id: '12',
+				path: '<%= image_tag 'silkr.jpg', class: "mimages" %>'
+			},
+			{	id: '13',
+				path: '<%= image_tag 'stickersr.jpg', class: "mimages" %>'
+			},
+			{	id: '14',
+				path: '<%= image_tag 'transparency.jpg', class: "mimages" %>'
+			},
+			{	id: '15',
+				path: '<%= image_tag 'vinylstickers(1)r.jpg', class: "mimages" %>'
+			},
+			{	id: '16',
+				path: '<%= image_tag 'wallpaper2r.jpg', class: "mimages" %>'
+			}
+			];
+
+		function changeImage(id) {
+			for( var i = 0; i < imagesArray.length; i++) {
+				if(imagesArray[i].id == id) {
+					document.getElementById('selectedImage').innerHTML = imagesArray[i].path;
+				}
+			}
+			
+		}
+		
+	</script>
+		<div id='mainImage' class="col-sm-10">
+			<div id="selectedImage">
+			</div>
+		</div>
+		<div class='thumbcolumn col-sm-2'>
+			<a  onclick="changeImage(2)">
+				<%= image_tag 'hweight2.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(3)">
+				<%= image_tag 'image1r.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(4)">
+				<%= image_tag 'image2r.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(5)">
+				<%= image_tag 'JustinHagerr.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(6)">
+				<%= image_tag 'lusterr.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(7)">
+				<%= image_tag 'luster2r.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(8)">
+				<%= image_tag 'metallicr.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(9)">
+				<%= image_tag 'metallic22r.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(11)">
+				<%= image_tag 'shannonr.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(12)">
+				<%= image_tag 'silkr.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(13)">
+				<%= image_tag 'stickersr.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(14)">
+				<%= image_tag 'transparency.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(15)">
+				<%= image_tag 'vinylstickers(1)r.jpg', class: "thumbs" %>
+			</a>
+			<a  onclick="changeImage(16)">
+				<%= image_tag 'wallpaper2r.jpg', class: "thumbs" %>
+			</a>
+
+		</div>
+	</div> 
+
+<div class="rightsection col-xs-12 col-sm-2">
+	<div class="row">
+
+		<div class="right1 btn" data-toggle="modal" data-target="#priceSheet">
+			<%= image_tag "pricesheet.png", class: "rightbuttons" %>
+		</div>
+		<div class="modal fade" id="priceSheet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal1" role="document">
+				<div class="modal-content">
+				    <div class="modal-header">
+	            		<div type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><%= image_tag "close.png", class: "closebutton btn" %></span></div>
+	            		<h4 class="modal-title qsect1" id="myModalLabel">Price Sheet</h4>
+	          		</div>
+	          		<div class="qsect2 ">
+	          		</div>
+	          		<div class="modal-body" style="height:100%">
+						<%= render partial: 'layouts/pricesheet' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div type="button" class="right2 btn" data-toggle="modal" data-target="#myModal">
+		 <%= image_tag "requestaquote.png", class: "rightbuttons" %>
+		</div>
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal2" role="document">
+				<div class="modal-content">
+				    <div class="modal-header">
+	            		<div type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><%= image_tag "close.png", class: "closebutton btn" %></span></div>
+	            		<h4 class="modal-title qsect1" id="myModalLabel">Request a Quote</h4>
+	          		</div>
+	          		<div class="modal-body">
+	          			<div class="qsect2 ">
+	           			 	<p> "Hi there, in order to best serve you please submit a quote.</p>
+	          			</div>
+	          			<hr>
+						<%= render partial: "quotes/form", locals: { quote: @quote } %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="right3">
+			<h4> Follow us On Social Media </h4>
+			<ul>
+				<li> <a href="https://www.facebook.com/strangecessation"><%= image_tag "facebook.png", class: "icon" %></a></li>
+				<li> <a href="#"><%= image_tag "twitter.png", class: "icon" %></a></li>
+				<li><a href="https://www.instagram.com/strange_cessation_/"><%= image_tag "instagram.png", class: "icon" %></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
