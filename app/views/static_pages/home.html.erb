@@ -1,39 +1,4 @@
-
-<div class="leftsection col-xs-12 col-sm-2">
-	<div class="row">
-		<div class="logo img-responsive">
-			<%= image_tag "LOGO.jpg", class: "limg" %>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="contact">
-			 <div>
-			 	<span><%= image_tag "location.png", class: "icon" %></span><span>400 BRANNAN ST. SUITE 204  </span>
-			  <p> SAN FRANCISCO, CA 94107</p> 
-			  </div>
-			 <div><span><%= image_tag "phone.png", class: "icon" %>405 - 503 - 1678 </span></div>
-			 <div><span><%= image_tag "mail.png", class: "icon" %> mksokc@gmail.com </span></div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="services">
-			<h1> Large Format Printing Services </h1>
-			<span> <%= image_tag "check.png", class: "icon2" %>  OVERSIZED INKJET PRINTS </span><br>
-			<span><%= image_tag "check.png", class: "icon2" %>  PHOTOGRAPHY </span><br>
-			<span><%= image_tag "check.png", class: "icon2" %>  ART SERIES </span><br>
-			<span><%= image_tag "check.png", class: "icon2" %> SHORT RUN POSTERS </span><br>
-			<span><%= image_tag "check.png", class: "icon2" %>FULL COLOR AND 2 COLOR "TRASH" STICKERS </span> <br>
-			<span><%= image_tag "check.png", class: "icon2" %> WALLPAPER </span><br>
-			<span><%= image_tag "check.png", class: "icon2" %> TEXTILE ART PRINTS </span><br>
-			<span><%= image_tag "check.png", class: "icon2" %> (NATURAL CANVAS, SILK, COTTON, MESH BANNERS) </span><br>
-			<span><%= image_tag "check.png", class: "icon2" %> MORE!!!</span> <br>
-		</div>
-	</div>
-</div>
-<div class="mainsection col-xs-12 col-sm-8">
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function setMainImage() {
 	    	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
 		});
@@ -93,6 +58,41 @@
 		}
 		
 	</script>
+	
+<div class="leftsection col-xs-12 col-sm-2">
+	<div class="row">
+		<div class="logo img-responsive">
+			<%= image_tag "LOGO.jpg", class: "limg" %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="contact">
+			 <div>
+			 	<span><%= image_tag "location.png", class: "icon" %></span><span>400 BRANNAN ST. SUITE 204  </span>
+			  <p> SAN FRANCISCO, CA 94107</p> 
+			  </div>
+			 <div><span><%= image_tag "phone.png", class: "icon" %>405 - 503 - 1678 </span></div>
+			 <div><span><%= image_tag "mail.png", class: "icon" %> mksokc@gmail.com </span></div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="services">
+			<h1> Large Format Printing Services </h1>
+			<span> <%= image_tag "check.png", class: "icon2" %>  OVERSIZED INKJET PRINTS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>  PHOTOGRAPHY </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>  ART SERIES </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> SHORT RUN POSTERS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %>FULL COLOR AND 2 COLOR "TRASH" STICKERS </span> <br>
+			<span><%= image_tag "check.png", class: "icon2" %> WALLPAPER </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> TEXTILE ART PRINTS </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> (NATURAL CANVAS, SILK, COTTON, MESH BANNERS) </span><br>
+			<span><%= image_tag "check.png", class: "icon2" %> MORE!!!</span> <br>
+		</div>
+	</div>
+</div>
+<div class="mainsection col-xs-12 col-sm-8">
 		<div id='mainImage' class="col-sm-10">
 			<div id="selectedImage">
 			</div>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get 'static_pages/home'
-
+    get 'templates/home'
   resources :users
   resources :quotes
    resources :layouts

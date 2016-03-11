@@ -7,10 +7,9 @@
     <div class="newquotes col-xs-2">
       <h2>
       <% @myarray = [] %>
-      <% @trashedquotes = [] %>
-      <% @quotes.each do |x| %> 
-          <% if x.unread?(current_user) == true %>
-                <% @myarray.push(x) %>
+      <% @quotes.each do |quote| %> 
+          <% if quote.unread?(current_user) == true %>
+                <% @myarray.push(quote) %>
             <% end %>
           <% end %>
           
@@ -30,7 +29,9 @@
   <script>
 
     $(document).ready(function() {
-      document.getElementById('settings').style.visibility = 'hidden'
+
+      document.getElementById('settings').style.visibility = 'hidden';
+      
     });
 
       function switchSettings() {
@@ -50,18 +51,33 @@
   </div>
   <div>
     <div class="quotes col-xs-10 col-md-8" ng-controller="QuotesCtrl">
-    
-        <li ng-repeat="quote in quotes">
-          <a href="quotes/{{quote.id}}">
-            <span>Quote id: {{quote.id}}</span>
-            <span>Name: {{quote.name}}</span>
-            <span>Email: {{quote.email}}</span>
-            <span>City: {{quote.city}}</span>
-          </a>
-        </li>
-        <div ng-view>
+      <div ng-repeat="quote in quotes">
+        <a ng-click="showQuote(quote);">
+          <span>Quote id: {{quote.id}}</span>
+          <span>Name: {{quote.name}}</span>
+          <span>Email: {{quote.email}}</span>
+          <span>City: {{quote.city}}</span>
+            <span>Region: {{quote.region}}</span>
+          <span>State: {{quote.state}}</span>
+        </a>
+        <div ng-show="quote.visible">
+          <div>
+          Question?  
+          {{quote.question1 }}</div>
+          <span>  {{quote.question2 }}</span>
+          <span>  {{quote.question3 }}</span>
+          <span>  {{quote.question4 }}</span>
+          <span>  {{quote.question5 }}</span>
+          <span>  {{quote.question6 }}</span>
+          <span>  {{quote.question7 }}</span>
+          <span>  {{quote.question8 }}</span>
+          <span>  {{quote.question9 }}</span>
+          <span>  {{quote.question10 }}</span>
+          <span>  {{quote.question11 }}</span>
+          <span>  {{quote.question12 }}</span>
+          <span>  {{quote.question13}}</span>
         </div>
-      
+      </div>
     </div>
   </div>
 

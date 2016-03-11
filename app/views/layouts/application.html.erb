@@ -1,59 +1,59 @@
 <!DOCTYPE html>
-<html ng-app="QuotesApp">
+<html ng-app="StrangeCessation">
 <head>
   <title>StrangeCessation</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, intial-scale=1, maximum-scale=1">
 </head>
-<body>
-	<div class="container-fluid">
-	<div class="section1">
-	<div class="heading">
-		<%= image_tag "HEADER.jpg", class: "himg" %>
-	</div>
-</div>
+<body >
+	<div class="container-fluid" ui-view>
+		<div class="section1">
+			<div class="heading">
+				<%= image_tag "HEADER.jpg", class: "himg" %>
+			</div>
+		</div>
+
 		<%= yield %>
+		
 	</div>
 </body>
-<hr>
+		<hr>
 	<div class="footer col-xs-offset-10">
-	<% if !logged_in? %>
-		<script>
-		$(document).ready(function () {
-				document.getElementById("lgfields").style.visibility = "hidden";
-			});
-			function switchFields() {
-				if(document.getElementById("lgfields").style.visibility == "hidden") {
-					document.getElementById("lgfields").style.visibility = "visible"
-				} else {
-					document.getElementById("lgfields").style.visibility = "hidden"
-				}; 
-			}
-		</script>
-	<% end %>
-		<span>Strange Cessation</span>
 		<% if !logged_in? %>
+			<script>
+				$(document).ready(function () {
+						document.getElementById("lgfields").style.visibility = "hidden";
+					});
+					function switchFields() {
+						if(document.getElementById("lgfields").style.visibility == "hidden") {
+							document.getElementById("lgfields").style.visibility = "visible"
+						} else {
+							document.getElementById("lgfields").style.visibility = "hidden"
+						}; 
+				}
+			</script>
+			<span>Strange Cessation</span>
 			<div class="loginI">
 				<a onclick="switchFields()" >
 					<%= image_tag "login.png", class: "loginIcon loginImage" %>
 				</a> 
 			</div>
 			<div id="login">
-				
 				<div id="lgfields">
-				<%= render partial: "sessions/new" %>
+					<%= render partial: "sessions/new" %>
 				</div>
 			</div>
 		<% else %>
-			<div class="navigation">
-					<%= link_to "Home", static_pages_home_path %>
-					<%= link_to "Quotes", quotes_path %>
-					<%= link_to "Users", users_path %>
-	    			<%= link_to "Log out", logout_path, method: "delete" %>
-	  			
-	  		</div>
+			<span>Strange Cessation</span>
+				<div class="navigation">
+					<a ui-sref="home">Home</a>
+					<a ui-sref="quotes">Quotes</a>
+					<a ui-sref="users">Users</a>
+		    		<%= link_to "Log out", logout_path, method: "delete" %>
+		  		</div>
 		<% end %>
 	</div>
+
 </html>

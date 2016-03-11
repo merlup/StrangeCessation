@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20160310093303) do
     t.string   "question12"
     t.string   "question13"
     t.string   "question14"
-    t.datetime "deleted_at"
     t.string   "image"
   end
 
