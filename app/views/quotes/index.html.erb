@@ -1,103 +1,90 @@
 <% if logged_in? %>
 <div class="quotespage" >
-  <div class="quoteicons col-xs-12">
+  <div class="userleftpanel col-xs-2 col-sm-3 col-sm-offset-1">
+    <div class="row">
+      <h1> Welcome <%= current_user.username %> </h1>
+    </div>
+    <div class="row">
+      <%= image_tag current_user.avatar %>
+    </div>
+    <div class="row">
+      <script>
+        $(document).ready(function() {
+          document.getElementById('settings').style.visibility = 'hidden';
+        });
+
+          function switchSettings() {
+            if(document.getElementById('settings').style.visibility == 'hidden') {
+              document.getElementById('settings').style.visibility = "visible"
+            } else {
+              document.getElementById('settings').style.visibility = 'hidden'
+            };
+          }
+      </script>
+      <a onclick="switchSettings()"> Settings </a>
+        <div id="settings">
+          <%= render :partial => "users/form", :locals => { :user => @user } %>
+        </div>
+    </div>
+  </div>
+  
+  <div class="quoteicons col-xs-8">
     <div class="openquotes col-xs-2">
      <h2><%= @quotes.count %> Open Jobs</h2>
     </div>
-    <div class="newquotes col-xs-2">
+    <div class="newquotes col-xs-2 col-xs-offset-1">
       <h2>
       <% @myarray = [] %>
       <% @quotes.each do |quote| %> 
-          <% if quote.unread?(current_user) == true %>
-                <% @myarray.push(quote) %>
-            <% end %>
-          <% end %>
-          
-          <%= @myarray.count %> New Quotes
+        <% if quote.unread?(current_user) == true %>
+          <% @myarray.push(quote) %>
+        <% end %>
+      <% end %>    
+      <%= @myarray.count %> New Request
        </h2>
     </div>
-    <div class="deletedquotes col-xs-2">
+    <div class="deletedquotes col-xs-2 col-offset-1">
       <h2>  Deleted Quotes </h2>
     </div>
   </div>
 
-  <div class="userleftpanel col-xs-2 col-sm-4">
-    <p id="notice"><%= notice %></p>
-    <h1> Welcome <%= current_user.username %> </h1>
-    <%= image_tag current_user.avatar %>
-    <div class="row">
-  <script>
 
-    $(document).ready(function() {
-
-      document.getElementById('settings').style.visibility = 'hidden';
+  
       
-    });
+      <div id='quotes' class="quotes col-xs-5 col-md-5" ng-controller="QuotesCtrl" >
+      <div id="blue"></div>
+        <div ng-repeat="quote in quotes" class="request">
+          <a ng-click="showQuote(quote);">
+            <span ng-if="quote.read == false"> *NEW*</span>
 
-      function switchSettings() {
-        if(document.getElementById('settings').style.visibility == 'hidden') {
-          document.getElementById('settings').style.visibility = "visible"
-        } else {
-          document.getElementById('settings').style.visibility = 'hidden'
-        };
-      }
-
-    </script>
-      <a onclick="switchSettings()"> Settings </a>
-      <div id="settings">
-        <%= render :partial => "users/form", :locals => { :user => @user } %>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="quotes col-xs-10 col-md-8" ng-controller="QuotesCtrl">
-      <div ng-repeat="quote in quotes">
-        <a ng-click="showQuote(quote);">
-          <span>Quote id: {{quote.id}}</span>
-          <span>Name: {{quote.name}}</span>
-          <span>Email: {{quote.email}}</span>
-          <span>City: {{quote.city}}</span>
-            <span>Region: {{quote.region}}</span>
-          <span>State: {{quote.state}}</span>
-        </a>
-        <div ng-show="quote.visible">
-          <div>
-          Question?  
-          {{quote.question1 }}</div>
-          <span>  {{quote.question2 }}</span>
-          <span>  {{quote.question3 }}</span>
-          <span>  {{quote.question4 }}</span>
-          <span>  {{quote.question5 }}</span>
-          <span>  {{quote.question6 }}</span>
-          <span>  {{quote.question7 }}</span>
-          <span>  {{quote.question8 }}</span>
-          <span>  {{quote.question9 }}</span>
-          <span>  {{quote.question10 }}</span>
-          <span>  {{quote.question11 }}</span>
-          <span>  {{quote.question12 }}</span>
-          <span>  {{quote.question13}}</span>
+            <span class="col-xs-12">Request #{{quote.id}}</span><br>
+            <span class="col-xs-1">{{quote.name}}</span>
+            <span class="col-xs-1">{{quote.email}}</span>
+            <span class="col-xs-4 col-xs-offset-4">{{quote.city}}, {{quote.state}}, {{quote.region}} </span>
+          </a>
+          <div ng-show="quote.visible">
+            <div ng-controller="QuotesController"><a ui-sref="quotes.detail({id: quote.id})" onclick="append()">View</a>
+            <a ng-click="deleteQuote(quote)" style="float:left;"> Delete </a>
+            <div>
+              <!-- <span>  {{quote.question2 }}</span>
+              <span>  {{quote.question3 }}</span>
+              <span>  {{quote.question4 }}</span>
+              <span>  {{quote.question5 }}</span>
+              <span>  {{quote.question6 }}</span>
+              <span>  {{quote.question7 }}</span>
+              <span>  {{quote.question8 }}</span>
+              <span>  {{quote.question9 }}</span>
+              <span>  {{quote.question10 }}</span>
+              <span>  {{quote.question11 }}</span>
+              <span>  {{quote.question12 }}</span>
+              <span>  {{quote.question13}}</span> -->
+            </div>
+            
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-
-
-<!--   <% @quotes.each do |quote| %>
-    <div class="quote">
-      <div class="row">
-        <% if quote.unread?(current_user) %>
-          <span> Unread </span>
-        <% end %>
-          <span> Quote ID: <%= quote.id %> </span>
-          <span> Name: <%= quote.name %> </span>
-          <span> Email: <%= quote.email %> </span>
-          <span> City: <%= quote.city %></span>
-          <%= link_to 'Show', quote %>
-          <%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure you want to send to trash?' } %>
-      </div>
-    </div>
-  <% end %> -->
-  </div>
-</div>
 <% end %>

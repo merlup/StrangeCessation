@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="StrangeCessation">
+<html>
 <head>
   <title>StrangeCessation</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -7,8 +7,8 @@
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, intial-scale=1, maximum-scale=1">
 </head>
-<body >
-	<div class="container-fluid" ui-view>
+<body ng-app="StrangeCessation">
+	<div class="container-fluid" ui-view="main">
 		<div class="section1">
 			<div class="heading">
 				<%= image_tag "HEADER.jpg", class: "himg" %>
@@ -16,33 +16,33 @@
 		</div>
 
 		<%= yield %>
-		
+
+		<hr>
 	</div>
 </body>
-		<hr>
-	<div class="footer col-xs-offset-10">
+	<div class="footer ">
 		<% if !logged_in? %>
 			<script>
 				$(document).ready(function () {
-						document.getElementById("lgfields").style.visibility = "hidden";
-					});
-					function switchFields() {
-						if(document.getElementById("lgfields").style.visibility == "hidden") {
-							document.getElementById("lgfields").style.visibility = "visible"
-						} else {
-							document.getElementById("lgfields").style.visibility = "hidden"
-						}; 
+					document.getElementById("lgfields").style.visibility = "hidden";
+				});
+				function switchFields() {
+					if(document.getElementById("lgfields").style.visibility == "hidden") {
+						document.getElementById("lgfields").style.visibility = "visible"
+					} else {
+						document.getElementById("lgfields").style.visibility = "hidden"
+					}; 
 				}
 			</script>
-			<span>Strange Cessation</span>
-			<div class="loginI">
-				<a onclick="switchFields()" >
-					<%= image_tag "login.png", class: "loginIcon loginImage" %>
-				</a> 
-			</div>
-			<div id="login">
-				<div id="lgfields">
-					<%= render partial: "sessions/new" %>
+			<div>
+			<span class="col-xs-offset-5 col-sm-offset-10">Strange Cessation</span>
+				<span class="loginI" >
+					<a onclick="switchFields()"><%= image_tag "login.png", class: "loginIcon loginImage" %></a> 
+				</span>
+				<div id="login" class="col-sm-offset-10">
+					<div id="lgfields">
+						<%= render partial: "sessions/new" %>
+					</div>
 				</div>
 			</div>
 		<% else %>

@@ -114,15 +114,19 @@
     <%= @quote.question14 %>
   </p>
   <%= image_tag  @quote.image%>
+
+   
+
+
   
-
-
+<a ui-sref="quotes.detail.pdf"> Download Printable Quote (PDF) </a>
+<ui-view></ui-view>
 
 
   <%= link_to "Download Printable Quote (PDF)", quote_path(@quote, :format => "pdf") %>
   <%= link_to 'Edit', edit_quote_path(@quote) %> |
   <%= link_to 'Back', quotes_path %>
-<% else %>
+
   
 <% end %>
   

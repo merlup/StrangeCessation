@@ -241,6 +241,16 @@
 	width: 20px;
 }
 
+.request {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	height: 40px;
+	font-size: 16px;
+	background-color: white;
+	border: 1px;
+
+}
+
 @media print {
   body {
     background-color: #FFF;

@@ -69,8 +69,9 @@ Quote.create(
 	question12: question12.first,
 	question13: question13.first,
 	question14: question14.first,
-	image: open('app/assets/images/image1.png')
-	)
+	image: open('app/assets/images/image1.png'),
+	read: 'false'
+)
 Quote.create(
 	name: 'Jane',
 	email: emails.second,
@@ -92,8 +93,9 @@ Quote.create(
 	question12: question12.second,
 	question13: question13.second,
 	question14: question14.second,
-	image: open('app/assets/images/image2.png')
-	)
+	image: open('app/assets/images/image2.png'),
+	read: 'false'
+)
 Quote.create(
 	name: 'Mark',
 	email: emails.third,
@@ -115,8 +117,9 @@ Quote.create(
 	question12: question12.third,
 	question13: question13.third,
 	question14: question14.third,
-	image: open('app/assets/images/image3.png')
-	)
+	image: open('app/assets/images/image3.png'),
+	read: 'false'
+)
 
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310093303) do
+ActiveRecord::Schema.define(version: 20160311191409) do
 
   create_table "quotes", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160310093303) do
     t.string   "question13"
     t.string   "question14"
     t.string   "image"
+    t.boolean  "read"
   end
 
   create_table "read_marks", force: :cascade do |t|
