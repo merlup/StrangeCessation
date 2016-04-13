@@ -32,10 +32,10 @@ app.factory('User', ['$resource', function($resource){
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-    .state('home', { url: '',  views: { 'main@': { templateUrl: 'static_pages/home.html'}}})
-    .state('quotes', { url: '/quotes',  views: {'main@': { templateUrl: 'quotes.html', controller: 'QuotesCtrl'}}})
-    .state('quotes.detail',  { url: '/:id', views: {'fullquote@': { templateUrl: 'quotes/new.html', controller: 'QuotesController'}}})
-    .state('quotes.detail.pdf', { url: '/:id.pdf', views: { 'quotepdf': { controller: 'QuotesCtrl'}}})
+    .state('home', { url: '',  views: { 'main': { templateUrl: 'static_pages/home.html'}}})
+    .state('quotes', { url: '/quotes',  views: {'main': { templateUrl: 'quotes.html', controller: 'QuotesCtrl'}}})
+    .state('quotes.detail',  { url: '/:id', views: {'fullquote': { templateUrl: function($stateParams) {return `quotes/${$stateParams.id}`;}, controller: 'QuotesController'}}})
+    .state('quotes.detail.pdf', { url: '.pdf', views: { 'quotepdf': { controller: 'QuotesCtrl'}}})
     .state('users', { url: '/users', templateUrl: 'users.html', controller: 'UsersCtrl'})
     .state('/users/:id', { url: 'users_show.html', controller: 'UsersCtrl' });
 
@@ -62,6 +62,8 @@ app.controller("QuotesCtrl", ['$scope', '$state', '$stateParams', 'Quotes', 'Quo
     }
 
     var logState = $scope.logState ;
+    var fullquote = true;
+    $scope.fullquote = fullquote;
 
     $scope.showQuote = function (quote) {
         quote.visible = !quote.visible;
@@ -74,23 +76,16 @@ app.controller("QuotesCtrl", ['$scope', '$state', '$stateParams', 'Quotes', 'Quo
     }
 
     if($state == 'quotes.detail.pdf') {
+        console.log('Fire Modal');
 	    $scope.firePdfModal = function() {
 	    	console.log('Fire Modal');
 	    }
     }
 
-    $scope.appendRequest = function appendRequest() {
-
-    	var request_div = angular.module.document.getElementById('blue');
-    	request_div.createElement('full_request');
-    	request_div.body.appendChild('full_request');
-    	var full_request = angular.module.document.getElementById('full_request');
-    	full_request.style = 'position: absolute; background-color: grey';
-    	full_request.innerHTML = '<div ui-view="fullquote"></div>';
-
+    $scope.showfullquote = function () {
+        fullquote = false;
+        console.log(fullquote);
     }
-
-    var appendRequest = $scope.appendRequest;
 
 }]);
 

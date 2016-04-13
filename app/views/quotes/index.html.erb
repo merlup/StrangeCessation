@@ -11,21 +11,23 @@
       <script>
         $(document).ready(function() {
           document.getElementById('settings').style.visibility = 'hidden';
+          document.getElementById('fullquote').style.visibility = 'hidden';
         });
 
-          function switchSettings() {
-            if(document.getElementById('settings').style.visibility == 'hidden') {
-              document.getElementById('settings').style.visibility = "visible"
-            } else {
-              document.getElementById('settings').style.visibility = 'hidden'
-            };
-          }
+        function switchSettings() {
+          if(document.getElementById('settings').style.visibility == 'hidden') {
+            document.getElementById('settings').style.visibility = "visible"
+          } else {
+            document.getElementById('settings').style.visibility = 'hidden'
+          };
+        }
       </script>
       <a onclick="switchSettings()"> Settings </a>
         <div id="settings">
           <%= render :partial => "users/form", :locals => { :user => @user } %>
         </div>
     </div>
+       
   </div>
   
   <div class="quoteicons col-xs-8">
@@ -41,10 +43,10 @@
         <% end %>
       <% end %>    
       <%= @myarray.count %> New Request
-       </h2>
+      </h2>
     </div>
     <div class="deletedquotes col-xs-2 col-offset-1">
-      <h2>  Deleted Quotes </h2>
+      <h2> Deleted Quotes </h2>
     </div>
   </div>
 
@@ -52,34 +54,20 @@
   
       
       <div id='quotes' class="quotes col-xs-5 col-md-5" ng-controller="QuotesCtrl" >
-      <div id="blue"></div>
+      <div id="full" ui-view="fullquote"></div>
         <div ng-repeat="quote in quotes" class="request">
-          <a ng-click="showQuote(quote);">
-            <span ng-if="quote.read == false"> *NEW*</span>
-
-            <span class="col-xs-12">Request #{{quote.id}}</span><br>
-            <span class="col-xs-1">{{quote.name}}</span>
-            <span class="col-xs-1">{{quote.email}}</span>
-            <span class="col-xs-4 col-xs-offset-4">{{quote.city}}, {{quote.state}}, {{quote.region}} </span>
-          </a>
-          <div ng-show="quote.visible">
-            <div ng-controller="QuotesController"><a ui-sref="quotes.detail({id: quote.id})" onclick="append()">View</a>
-            <a ng-click="deleteQuote(quote)" style="float:left;"> Delete </a>
-            <div>
-              <!-- <span>  {{quote.question2 }}</span>
-              <span>  {{quote.question3 }}</span>
-              <span>  {{quote.question4 }}</span>
-              <span>  {{quote.question5 }}</span>
-              <span>  {{quote.question6 }}</span>
-              <span>  {{quote.question7 }}</span>
-              <span>  {{quote.question8 }}</span>
-              <span>  {{quote.question9 }}</span>
-              <span>  {{quote.question10 }}</span>
-              <span>  {{quote.question11 }}</span>
-              <span>  {{quote.question12 }}</span>
-              <span>  {{quote.question13}}</span> -->
-            </div>
-            
+            <a ng-click="showQuote(quote);">
+              <span ng-if="quote.read == false"> *NEW*</span>
+              <span class="col-xs-12">Request #{{quote.id}}</span><br>
+              <span class="col-xs-1">{{quote.name}}</span>
+              <span class="col-xs-1">{{quote.email}}</span>
+              <span class="col-xs-4 col-xs-offset-4">{{quote.city}}, {{quote.state}}, {{quote.region}} </span>
+            </a>
+            <div ng-show="quote.visible">
+              <div ng-controller="QuotesController"><a ui-sref="quotes.detail({id: quote.id})" ng-click="showfullquote()" ng-init="fullquote = false">View</a>
+              <a ng-click="deleteQuote(quote)" style="float:left;"> Delete </a>
+              <div>
+              </div>
             </div>
           </div>
         </div>

@@ -8,19 +8,18 @@
   <meta name="viewport" content="width=device-width, intial-scale=1, maximum-scale=1">
 </head>
 <body ng-app="StrangeCessation">
-	<div class="container-fluid" ui-view="main">
-		<div class="section1">
-			<div class="heading">
-				<%= image_tag "HEADER.jpg", class: "himg" %>
-			</div>
+	<div class="section1">
+		<div class="heading">
+			<%= image_tag "HEADER.jpg", class: "himg" %>
 		</div>
-
+	</div>
+	<div class="container-fluid" ui-view="main">
 		<%= yield %>
-
 		<hr>
 	</div>
 </body>
-	<div class="footer ">
+	
+		<div class="footer ">
 		<% if !logged_in? %>
 			<script>
 				$(document).ready(function () {
@@ -35,10 +34,10 @@
 				}
 			</script>
 			<div>
-			<span class="col-xs-offset-5 col-sm-offset-10">Strange Cessation</span>
-				<span class="loginI" >
-					<a onclick="switchFields()"><%= image_tag "login.png", class: "loginIcon loginImage" %></a> 
-				</span>
+				<span class="col-xs-offset-5 col-sm-offset-10">Strange Cessation</span>
+					<span class="loginI">
+						<a onclick="switchFields()"><%= image_tag "login.png", class: "loginIcon loginImage" %></a> 
+					</span>
 				<div id="login" class="col-sm-offset-10">
 					<div id="lgfields">
 						<%= render partial: "sessions/new" %>
