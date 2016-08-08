@@ -16,6 +16,14 @@
 //= require angular-ui-router
 //= require angular-resource
 //= require angular-ui-bootstrap
-//= require turbolinks
+//= require pdf.combined
+//= require angular-pdf
+//= require angular-pdf.min
+//= require pdf
+//= require pdf.worker
+//= require pdf_viewer
+//= require custom
+//= require Request
 //= require_tree .
 
+$('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); e.preventDefault(); });

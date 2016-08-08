@@ -1,0 +1,53 @@
+<% if logged_in? %>
+  
+  <% @request.mark_as_read! :for => current_user %>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @request.name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @request.email %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @request.address %>
+  </p>
+
+  <p>
+    <strong>City:</strong>
+    <%= @request.city %>
+  </p>
+
+  <p>
+    <strong>State:</strong>
+    <%= @request.state %>
+  </p>
+
+  <p>
+    <strong>Region:</strong>
+    <%= @request.region %>
+  </p>
+
+  
+  <%= image_tag  @request.image%>
+
+   
+
+
+  
+<a ui-sref="requests.detail.pdf"> Download Printable Request (PDF) </a>
+<a ui-sref="requests">Close</a>
+<a ui-sref="requests.detail.edit">Edit</a>
+  <%= link_to "Download Printable Request (PDF)", request_path(@request, :format => "pdf") , 'data-popup' => true %>
+  <%= link_to 'Edit', edit_request_path(@request) %> |
+  
+
+  
+<% end %>
+<div ui-view="main2"></div>
+  

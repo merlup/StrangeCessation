@@ -1,0 +1,23 @@
+ <div class="footer ">
+        <% if !logged_in? %>
+            <div>
+                <span class="col-xs-offset-5 col-sm-offset-10">Strange Cessation</span>
+                    <span class="loginI">
+                        <a onclick="switchFields()"><%= image_tag "login.png", class: "loginIcon loginImage" %></a>
+                    </span>
+                <div id="login" class="col-sm-offset-10">
+                    <div id="lgfields">
+                        <%= render partial: "sessions/new" %>
+                    </div>
+                </div>
+            </div>
+        <% else %>
+            <span>Strange Cessation</span>
+                <div class="navigation">
+                    <a ui-sref="home">Home</a>
+                    <a ui-sref="requests">Requests</a>
+                    <a ui-sref="users">Users</a>
+                    <%= link_to "Log out", logout_path, method: "delete" %>
+                </div>
+        <% end %>
+    </div>

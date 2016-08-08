@@ -1,0 +1,77 @@
+ 
+<%= form_for (Request.new) do |f| %>
+  <% if Request.new.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(Request.new.count, "error") %> prohibited this request from being saved:</h2>
+      <ul> 
+        <% Request.new.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="qsect3">
+      <div class="qsect3_form">
+        <div class="row">
+          <div class="field col-xs-4">
+            <%= f.label :name %>:
+            <%= f.text_field :name, class: 'forminput' %>
+          </div>
+          <div class="field col-xs-4 ">
+            <%= f.label :email %>:
+            <%= f.text_field :email, class: 'forminput' %>
+          </div>
+          <div class="field col-xs-4">
+            <%= f.label :address %>:
+            <%= f.text_field :address, class: 'forminput' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field col-xs-4">
+            <%= f.label :city %>:
+            <%= f.text_field :city, class: 'forminput' %>
+          </div>
+          <div class="field col-xs-4">
+            <%= f.label :state %>:
+            <%= f.text_field :state, class: 'forminputsm' %>
+          </div>
+          <div class="field col-xs-4">
+            <%= f.label :region %>:
+            <%= f.text_field :region, class: 'forminputsm' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="qsect4">
+      <div class="col-md-6 leftq">
+        <p> What would you like printed? </p> 
+        <p> What Size do you need the print? </p>
+        <p> What Type of paper or material? </p> 
+        <p> How many of each item? </p> 
+        <p> Do you want your print cropped to bleed or with extra space? <a> example </a> </p> 
+        <p> Do you need strips? ($5.00 extra) </p> 
+        <p> Question7: </p> 
+      </div>
+      <div class="col-md-6 rightq">
+        <p> Would you need a delivered or shipped order? </p> 
+        <p> When did you need order completed by? </p> 
+     
+      
+        <p> Add an Image <p>
+        <%= f.file_field :image %>
+        <p> + More Images <p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="modal-footer">
+        <div type="button">
+          <%= image_submit_tag "submit.png" , class: "submitbutton" %>
+        </div>
+      </div>
+    </div>
+<% end %>
+

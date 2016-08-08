@@ -11,21 +11,21 @@ states = (['California','New York', 'Wisconsin'])
 regions =(['USA','Other'])
 addresses = (['1234 4th st', '1234 5th st','2352 6th st', '56743 9th st'])
 emails = (['email1@email.com', 'email2@email.com','email3@email.com','email4@email.com'])
-quoteimages = (['image1.png', 'image2.png', 'image3.png'])
-question1 =(['answer1', 'answer2', 'answer3'])
-question2 =(['answer1', 'answer2', 'answer3'])
-question3 =(['answer1', 'answer2', 'answer3'])
-question4 =(['answer1', 'answer2', 'answer3'])
-question5 =(['answer1', 'answer2', 'answer3'])
-question6 =(['answer1', 'answer2', 'answer3'])
-question7 =(['answer1', 'answer2', 'answer3'])
-question8 =(['answer1', 'answer2', 'answer3'])
-question9 =(['answer1', 'answer2', 'answer3'])
-question10 =(['answer1', 'answer2', 'answer3'])
-question11 =(['answer1', 'answer2', 'answer3'])
-question12 =(['answer1', 'answer2', 'answer3'])
-question13 =(['answer1', 'answer2', 'answer3'])
-question14 =(['answer1', 'answer2', 'answer3'])
+requestimages = (['image1.png', 'image2.png', 'image3.png'])
+q1 =(['answer1', 'answer2', 'answer3'])
+q2 =(['answer1', 'answer2', 'answer3'])
+q3 =(['answer1', 'answer2', 'answer3'])
+q4 =(['answer1', 'answer2', 'answer3'])
+q5 =(['answer1', 'answer2', 'answer3'])
+q6 =(['answer1', 'answer2', 'answer3'])
+q7 =(['answer1', 'answer2', 'answer3'])
+q8 =(['answer1', 'answer2', 'answer3'])
+q9 =(['answer1', 'answer2', 'answer3'])
+q10 =(['answer1', 'answer2', 'answer3'])
+q11 =(['answer1', 'answer2', 'answer3'])
+q12 =(['answer1', 'answer2', 'answer3'])
+q13 =(['answer1', 'answer2', 'answer3'])
+q14 =(['answer1', 'answer2', 'answer3'])
 usernames = (['administrator', 'guest'])
 useremails = (['admin@email.com', 'guest@email.com'])
 userpasswords = (['secret'])
@@ -48,75 +48,75 @@ User.create(
 
 
 
-Quote.create(
+Request.create(
 	name: 'John', 
 	email: emails.first,
 	address: addresses.first, 
 	city: cities.first, 
 	state: states.first, 
 	region: regions.first,
-	question1: question1.first,
-	question2: question2.first,
-	question3: question3.first,
-	question4: question4.first,
-	question5: question5.first,
-	question6: question6.first,
-	question7: question7.first,
-	question8: question8.first,
-	question9: question9.first,
-	question10: question10.first,
-	question11: question11.first,
-	question12: question12.first,
-	question13: question13.first,
-	question14: question14.first,
+	#q1: q1.first,
+	#q2: q2.first,
+	#q3: q3.first,
+	#q4: q4.first,
+	#q5: q5.first,
+	#q6: q6.first,
+	#q7: q7.first,
+	#q8: q8.first,
+	#q9: q9.first,
+	#q10: q10.first,
+	#q11: q11.first,
+	#q12: q12.first,
+	#q13: q13.first,
+	#q14: q14.first,
 	image: open('app/assets/images/image1.png'),
 	read: 'false'
 )
-Quote.create(
+Request.create(
 	name: 'Jane',
 	email: emails.second,
 	address: addresses.second,
 	city: cities.second, 
 	state: states.second, 
 	region: regions.first,
-	question1: question1.second,
-	question2: question2.second,
-	question3: question3.second,
-	question4: question4.second,
-	question5: question5.second,
-	question6: question6.second,
-	question7: question7.second,
-	question8: question8.second,
-	question9: question9.second,
-	question10: question10.second,
-	question11: question11.second,
-	question12: question12.second,
-	question13: question13.second,
-	question14: question14.second,
+	#q1: q1.first,
+	#q2: q2.first,
+	#q3: q3.first,
+	#q4: q4.first,
+	#q5: q5.first,
+	#q6: q6.first,
+	#q7: q7.first,
+	#q8: q8.first,
+	#q9: q9.first,
+	#q10: q10.first,
+	#q11: q11.first,
+	#q12: q12.first,
+	#q13: q13.first,
+	#q14: q14.first,
 	image: open('app/assets/images/image2.png'),
 	read: 'false'
 )
-Quote.create(
+Request.create(
 	name: 'Mark',
 	email: emails.third,
 	address: addresses.third, 
 	city: cities.third, 
 	state: states.third, 
 	region: regions.first,
-	question1: question1.third,
-	question2: question2.third,
-	question3: question3.third,
-	question4: question4.third,
-	question5: question5.third,
-	question6: question6.third,
-	question7: question7.third,
-	question8: question8.third,
-	question9: question9.third,
-	question10: question10.third,
-	question11: question11.third,
-	question12: question12.third,
-	question13: question13.third,
-	question14: question14.third,
+	#q1: q1.first,
+	#q2: q2.first,
+	#q3: q3.first,
+	#q4: q4.first,
+	#q5: q5.first,
+	#q6: q6.first,
+	#q7: q7.first,
+	#q8: q8.first,
+	#q9: q9.first,
+	#q10: q10.first,
+	#q11: q11.first,
+	#q12: q12.first,
+	#q13: q13.first,
+	#q14: q14.first,
 	image: open('app/assets/images/image3.png'),
 	read: 'false'
 )

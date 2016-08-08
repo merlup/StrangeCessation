@@ -1,6 +1,6 @@
 <script type="text/javascript">
 		$(document).ready(function setMainImage() {
-	    	document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
+	    	document.getElementById("selectedImage").innerHTML = imagesArray[2].path;
 		});
 
 		imagesArray = [
@@ -95,6 +95,8 @@
 <div class="mainsection col-xs-12 col-sm-8">
 		<div id='mainImage' class="col-sm-10">
 			<div id="selectedImage">
+			<%= image_tag 'hweight2.jpg', class: "mimages" %>
+
 			</div>
 		</div>
 		<div class='thumbcolumn col-sm-2'>
@@ -181,10 +183,11 @@
 	          		</div>
 	          		<div class="modal-body">
 	          			<div class="qsect2 ">
-	           			 	<p> "Hi there, in order to best serve you please submit a quote.</p>
+	           			 	<p> "Hi there, in order to best serve you please submit a quote request.</p>
+
 	          			</div>
 	          			<hr>
-						<%= render partial: "quotes/form", locals: { quote: @quote } %>
+						<%= render partial: "requests/form", locals: { request: @request } %>
 					</div>
 				</div>
 			</div>

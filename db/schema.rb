@@ -11,34 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311191409) do
+ActiveRecord::Schema.define(version: 20160807203142) do
 
-  create_table "quotes", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "region"
+  create_table "questions", force: :cascade do |t|
+    t.string   "q"
+    t.integer  "request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "question1"
-    t.string   "question2"
-    t.string   "question3"
-    t.string   "question4"
-    t.string   "question5"
-    t.string   "question6"
-    t.string   "question7"
-    t.string   "question8"
-    t.string   "question9"
-    t.string   "question10"
-    t.string   "question11"
-    t.string   "question12"
-    t.string   "question13"
-    t.string   "question14"
-    t.string   "image"
-    t.boolean  "read"
   end
+
+  add_index "questions", ["request_id"], name: "index_questions_on_request_id"
 
   create_table "read_marks", force: :cascade do |t|
     t.integer  "readable_id"
@@ -49,6 +31,19 @@ ActiveRecord::Schema.define(version: 20160311191409) do
   end
 
   add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index"
+
+  create_table "requests", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "image"
+    t.boolean  "read"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

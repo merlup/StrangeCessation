@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:session][:username])
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to '/quotes'
+      redirect_to '/requests'
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'static_pages/home'
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def loggedin?
     @user = session[:user_id]
-    redirect_to '/quotes'
+    redirect_to '/requests'
   end
 
   def destroy
