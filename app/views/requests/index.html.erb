@@ -1,18 +1,6 @@
-<% if logged_in? %>
-<div class="requestpage" >
-  <div class="userleftpanel col-xs-2 col-sm-3 col-sm-offset-1">
-    <div class="row">
-      <h1> Welcome <%= current_user.username %> </h1>
-    </div>
-    <div class="row">
-      <%= image_tag current_user.avatar %>
-    </div>
-    <div class="row">
-      <script>
-        $(document).ready(function() {
-          document.getElementById('settings').style.visibility = 'hidden';
-          document.getElementById('fullrequest').style.visibility = 'hidden';
-        });
+ <script type ="text/javascript">
+
+        
 
         function switchSettings() {
           if(document.getElementById('settings').style.visibility == 'hidden') {
@@ -22,8 +10,22 @@
           };
         }
       </script>
+
+
+<% if logged_in? %>
+
+<div class="requestpage" >
+  <div class="userleftpanel col-xs-2 col-sm-3 col-sm-offset-1">
+    <div class="row">
+      <h1> Welcome <%= current_user.username %> </h1>
+    </div>
+    <div class="row">
+      <%= image_tag current_user.avatar %>
+    </div>
+    <div class="row">
+     
       <a onclick="switchSettings()"> Settings </a>
-        <div id="settings">
+        <div id="settings" style="visibility:hidden;">
           <%= render :partial => "users/form", :locals => { :user => @user } %>
         </div>
     </div>
@@ -52,31 +54,25 @@
 
 
   
-      
-      <div id='requests' class="requests col-xs-5 col-md-5" ng-controller="RequestsCtrl" >
-    
-      <ng-pdf template-url="viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
-      <canvas id="pdf-canvas"></canvas>
-      <div id="full" ui-view="fullrequest"></div>
-
-        <div ng-repeat="request in requests" class="request">
-            <a ng-click="showRequest(request);">
-              <span ng-if="request.read == false"> *NEW*</span>
-              <span class="col-xs-12">Request #{{request.id}}</span><br>
-              <span class="col-xs-1">{{request.name}}</span>
-              <span class="col-xs-1">{{request.email}}</span>
-              <span class="col-xs-4 col-xs-offset-4">{{request.city}}, {{request.state}}, {{request.region}} </span>
-            </a>
-            <div ng-show="request.visible">
-              <div ng-controller="RequestController"><a ui-sref="requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
-              <a ng-click="deleteRequest(request)" style="float:left;"> Delete </a>
-              <div>
-              </div>
-            </div>
-          </div>
-        </div>
+<div id='requests' class="requests col-xs-5 col-md-5" ng-controller="RequestsCtrl" >
+  <div id="full" ui-view=""></div>
+  <div ng-repeat="request in requests" class="request">
+  
+    <a ng-click="showRequest(request);">
+      <span ng-if="request.read == false"> *NEW*</span>
+      <span class="col-xs-12">Request #{{request.id}}</span><br>
+      <span class="col-xs-1">{{request.name}}</span>
+      <span class="col-xs-1">{{request.email}}</span>
+      <span class="col-xs-4 col-xs-offset-4">{{request.city}}, {{request.state}}, {{request.region}} </span>
+    </a>
+    <div>
+      <div ng-controller="RequestController">
+        <a ui-sref="requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
+        <a ng-click="deleteRequest(request)" style="float:left;"> Delete </a>
       </div>
     </div>
   </div>
+</div>
+
 
 <% end %>

@@ -2,11 +2,11 @@
   
   <% @request.mark_as_read! :for => current_user %>
   <p id="notice"><%= notice %></p>
-
+<a ui-sref="requests">Close</a>
   <p>
     <strong>Name:</strong>
     <%= @request.name %>
-  </p>
+    </p>
 
   <p>
     <strong>Email:</strong>
@@ -40,10 +40,10 @@
 
 
   
-<a ui-sref="requests.detail.pdf"> Download Printable Request (PDF) </a>
-<a ui-sref="requests">Close</a>
+<%= link_to "View PDF", request_path(@request, :format => "pdf") , 'data-popup' => true %>
+
 <a ui-sref="requests.detail.edit">Edit</a>
-  <%= link_to "Download Printable Request (PDF)", request_path(@request, :format => "pdf") , 'data-popup' => true %>
+  
   <%= link_to 'Edit', edit_request_path(@request) %> |
   
 
