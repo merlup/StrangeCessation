@@ -34,12 +34,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('home', { url: '',  views: { 'main': { templateUrl: 'static_pages/home.html'}}})
     .state('requests', { url: '/requests',  views: {'main': { templateUrl: 'requests.html', controller: 'RequestsCtrl'}}})
-    .state('requests.detail',  { 
-        url: '/:id', 
-        templateUrl: function($stateParams) {
-                    return `/requests/${$stateParams.id}`;},
-        controller: 'RequestController'
-        })
+    .state('requests.detail',  { url: '/:id', templateUrl: function($stateParams) {return `/requests/${$stateParams.id}`;}, controller: 'RequestController'})
     .state('requests.detail.pdf', { url: '.pdf', views: { 'requestpdf': {  templateUrl: function($stateParams) {return `/requests/${$stateParams.id}.pdf`;}, controller: 'RequestController'}}})
     .state('requests.detail.edit',  { url: '/edit', views: {'main2': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}/edit`;}, controller: 'RequestController'}}})
     .state('users', { url: '/users', templateUrl: 'users.html', controller: 'UsersCtrl'})
@@ -57,7 +52,36 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request', '
   
     $scope.deleteRequest = function (request) {
         Request.delete({id: request.id})
+        $scope.requests.splice(request, 1)
         console.log("deleted" + request.id);
+        
+    }
+
+    var counter = 1; 
+    var back_button = document.getElementById("back");
+    var next_button = document.getElementById("back");
+
+    $scope.nextPage = function() {
+    $scope.requests = Request.query({page: counter +1}) 
+    var request_entries = Request.query.length   
+    counter += 1 ; 
+
+    back_button.style.visibility = "visible" ;
+
+     if (counter == 0) {
+            back_button.style.visibility = "hidden" ;
+        }
+   
+    }   
+   
+
+    $scope.backPage = function() {
+    $scope.requests = Request.query({page: counter - 1})   
+    counter -= 1 ;   
+
+        if (counter <= 1) {
+            back_button.style.visibility = "hidden" ;
+        }  
     }
 
 

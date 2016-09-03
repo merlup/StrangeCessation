@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
   respond_to :html, :json
  
   def index
-    @requests = Request.all
+    @requests = Request.paginate(:page => params[:page], :per_page => 5)
     respond_with = @requests
   end
 
@@ -67,7 +67,10 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    render json: { status: :ok}
+    respond_to do |format|
+      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
+      format.json { head :no_content }
+    end
  end
 
   def read?

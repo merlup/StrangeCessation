@@ -53,7 +53,9 @@
 
 <a ui-sref="requests.detail.edit">Edit</a>
   
-  <%= link_to 'Edit', edit_request_path(@request) %> |
+  <%= link_to 'Edit', edit_request_path(@request) %> 
+   <%= link_to 'Destroy', @request, method: :delete %>
+
   
 
   

@@ -62,6 +62,11 @@
   
 <div id='requests' class="requests col-md-5" ng-controller="RequestsCtrl" >
   <div id="full" ui-view=""></div>
+
+  <button  class="btn-sm btn-primary" id="back" ng-click="backPage()" style="visibility:hidden;">Back page</button>
+ 
+  <button class="btn-sm btn-primary" id="next" ng-click="nextPage()">Next page</button>
+  
   <div  ng-repeat="request in requests" class="request">
    
   
@@ -71,6 +76,7 @@
       <p class=" col-xs-12">Request #{{request.id}}</p>
       <p ng-controller="RequestController">
           <a class="col-xs-offset-8 col-xs-2" ui-sref="requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
+          <a class="col-xs-offset-8 col-xs-2"  ng-click="deleteRequest({id: request.id})" ng-init="fullrequest = false">Delete</a>
       </p>
       <p class="col-xs-6">From: {{request.name}}</p>
       <p class="col-xs-6"> Email:{{request.email}}</p><br>
@@ -84,6 +90,7 @@
   </div>
   
   <br>
+
 </div>
     </div>
     </div>
