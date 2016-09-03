@@ -33,6 +33,15 @@
     <%= @request.region %>
   </p>
 
+
+   <p>
+    <strong>Question & Answers:</strong>
+    <% @request.answers.each do |answer| %>
+    <p> Question: <%= answer.question %> </p>
+    <p> Answer: <%= answer.answer %> </p>
+    <% end %>
+  </p>
+
   
   <%= image_tag  @request.image%>
 

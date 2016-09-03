@@ -24,9 +24,15 @@
     </div>
     <div class="row">
      
-      <a onclick="switchSettings()"> Settings </a>
+      <a onclick="switchSettings()"> Menu </a>
         <div id="settings" style="visibility:hidden;">
-          <%= render :partial => "users/form", :locals => { :user => @user } %>
+        <br>
+         <%= link_to "+ Add Slider Images"  , sliderimages_path, class: " " %><br>
+        <%= link_to "+ Add Questions to Request Form", questions_path, class: " " %>
+        <br>
+        <%= link_to "Manage Users", users_path, class: " " %>
+       
+
         </div>
     </div>
        
@@ -72,6 +78,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 

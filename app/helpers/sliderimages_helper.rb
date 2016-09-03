@@ -1,0 +1,2 @@
+module SliderimagesHelper
+end

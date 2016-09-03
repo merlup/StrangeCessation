@@ -2,61 +2,23 @@
 		$(document).ready(function setMainImage() {
 	    	document.getElementById("selectedImage").innerHTML = imagesArray[2].path;
 		});
+		var imagesArray = [];
+</script>
 
-		imagesArray = [
-			{	id: '2',
-				path: '<%= image_tag 'hweight2.jpg', class: "mimages" %>'
-			},
-			{	id: '3',
-				path: '<%= image_tag 'image1r.jpg', class: "mimages" %>'
-			},
-			{	id: '4',
-				path: '<%= image_tag 'image2r.jpg', class: "mimages" %>'
-			},
-			{	id: '5',
-				path: '<%= image_tag 'JustinHagerr.jpg', class: "mimages" %>'
-			},
-			{	id: '6',
-				path: '<%= image_tag 'lusterr.jpg', class: "mimages" %>'
-			},
-			{	id: '7',
-				path: '<%= image_tag 'luster2r.jpg', class: "mimages" %>'
-			},
-			{	id: '8',
-				path: '<%= image_tag 'metallicr.jpg', class: "mimages" %>'
-			},
-			{	id: '9',
-				path: '<%= image_tag 'metallic22r.jpg', class: "mimages" %>'
-			},
-			{	id: '11',
-				path: '<%= image_tag 'shannonr.jpg', class: "mimages" %>'
-			},
-			{	id: '12',
-				path: '<%= image_tag 'silkr.jpg', class: "mimages" %>'
-			},
-			{	id: '13',
-				path: '<%= image_tag 'stickersr.jpg', class: "mimages" %>'
-			},
-			{	id: '14',
-				path: '<%= image_tag 'transparency.jpg', class: "mimages" %>'
-			},
-			{	id: '15',
-				path: '<%= image_tag 'vinylstickers(1)r.jpg', class: "mimages" %>'
-			},
-			{	id: '16',
-				path: '<%= image_tag 'wallpaper2r.jpg', class: "mimages" %>'
-			}
-			];
+<% @sliderimages.each do |sliderimage| %>
+	<script type="text/javascript">
+			imagesArray.push({	id: '<%= sliderimage.id %>',path: '<%= image_tag sliderimage.image, class: "mimages" %>'});
+	</script>
+<% end %> 
 
+	<script type="text/javascript">
 		function changeImage(id) {
 			for( var i = 0; i < imagesArray.length; i++) {
 				if(imagesArray[i].id == id) {
 					document.getElementById('selectedImage').innerHTML = imagesArray[i].path;
 				}
 			}
-			
-		}
-		
+		}	
 	</script>
 	<div class="col-lg-1"></div>
 <div class="leftsection col-lg-2">
@@ -79,7 +41,8 @@
 
 	<div class="row">
 		<div class="services">
-			<h3> Large Format Printing Services </h3>
+			<h4 style="text-align:center"> Large Format Printing Services </h4>
+			<hr>
 			<span> <%= image_tag "check.png", class: "icon2" %>  OVERSIZED INKJET PRINTS </span><br>
 			<span><%= image_tag "check.png", class: "icon2" %>  PHOTOGRAPHY </span><br>
 			<span><%= image_tag "check.png", class: "icon2" %>  ART SERIES </span><br>
@@ -97,53 +60,14 @@
 		<div id='mainImage' class="col-lg-9">
 			<div id="selectedImage">
 			<%= image_tag 'hweight2.jpg', class: "mimages" %>
-
 			</div>
 		</div>
 		<div class='thumbcolumn'>
-			<a  onclick="changeImage(2)">
-				<%= image_tag 'hweight2.jpg', class: "thumbs" %>
+		<% @sliderimages.each do |thumbnail| %>
+			<a  onclick="changeImage(<%= thumbnail.id %>)">
+				<%= image_tag  thumbnail.image, class: "thumbs" %>
 			</a>
-			<a  onclick="changeImage(3)">
-				<%= image_tag 'image1r.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(4)">
-				<%= image_tag 'image2r.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(5)">
-				<%= image_tag 'JustinHagerr.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(6)">
-				<%= image_tag 'lusterr.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(7)">
-				<%= image_tag 'luster2r.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(8)">
-				<%= image_tag 'metallicr.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(9)">
-				<%= image_tag 'metallic22r.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(11)">
-				<%= image_tag 'shannonr.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(12)">
-				<%= image_tag 'silkr.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(13)">
-				<%= image_tag 'stickersr.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(14)">
-				<%= image_tag 'transparency.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(15)">
-				<%= image_tag 'vinylstickers(1)r.jpg', class: "thumbs" %>
-			</a>
-			<a  onclick="changeImage(16)">
-				<%= image_tag 'wallpaper2r.jpg', class: "thumbs" %>
-			</a>
-
+		<% end %>
 		</div>
 	</div> 
 

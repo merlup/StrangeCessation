@@ -11,16 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160807203142) do
+ActiveRecord::Schema.define(version: 20160903085924) do
 
-  create_table "questions", force: :cascade do |t|
-    t.string   "q"
+  create_table "answers", force: :cascade do |t|
+    t.string   "question"
+    t.string   "answer"
     t.integer  "request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "questions", ["request_id"], name: "index_questions_on_request_id"
+  add_index "answers", ["request_id"], name: "index_answers_on_request_id"
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "images"
+    t.string   "image"
+  end
 
   create_table "read_marks", force: :cascade do |t|
     t.integer  "readable_id"
@@ -43,6 +52,18 @@ ActiveRecord::Schema.define(version: 20160807203142) do
     t.datetime "updated_at", null: false
     t.string   "image"
     t.boolean  "read"
+  end
+
+  create_table "sliderimages", force: :cascade do |t|
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sliders", force: :cascade do |t|
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

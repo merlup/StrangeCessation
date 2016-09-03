@@ -1,3 +1,5 @@
 class Question < ActiveRecord::Base
-  belongs_to :request
+	mount_uploader :image, QuestionUploader
+
+	
 end

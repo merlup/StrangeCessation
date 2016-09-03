@@ -47,18 +47,82 @@
 
     <div class="qsect4">
       <div class="col-md-6 leftq">
-        <p> What would you like printed? </p> 
-        <p> What Size do you need the print? </p>
-        <p> What Type of paper or material? </p> 
-        <p> How many of each item? </p> 
-        <p> Do you want your print cropped to bleed or with extra space? <a> example </a> </p> 
-        <p> Do you need strips? ($5.00 extra) </p> 
-        <p> Question7: </p> 
+    
+ 
+   
+        <% @questions[0..5].each do |question| %>
+       
+          <div>
+            <% if question.image.blank? %>
+              <%= question.content %>
+              <%= f.fields_for :answers, Answer.new do |ff| %>
+                <%= ff.text_field :answer %>
+                <%= ff.hidden_field :question, :value =>  question.content %>
+              <% end %>
+            <% else %>
+              <%= question.content %>
+              <%= f.fields_for :answers, Answer.new do |ff| %>
+                
+                <%= ff.hidden_field :question, :value =>  question.content %>
+              <% end %>
+             
+              <span  data-toggle="modal" data-target="#<%= question.id %>">
+                <a> Example </a>
+             </span> 
+              <div class="modal fade" id="<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal1" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body" style="height:100%">
+                        <%= image_tag question.image.example %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%= f.fields_for :answers, Answer.new do |ff| %>
+                <%= ff.text_field :answer %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+       
+    
+      
       </div>
       <div class="col-md-6 rightq">
-        <p> Would you need a delivered or shipped order? </p> 
-        <p> When did you need order completed by? </p> 
-     
+       <% @questions[6..10].each do |question| %>
+        
+          <div>
+            <% if question.image.blank? %>
+              <%= question.content %>
+               <%= f.fields_for :answers, Answer.new do |ff| %>
+                <%= ff.text_field :answer %>
+                <%= ff.hidden_field :question, :value =>  question.content %>
+              <% end %>
+            <% else %>
+              <%= question.content %>
+              <span  data-toggle="modal" data-target="#<%= question.id %>">
+              <%= f.fields_for :answers, Answer.new do |ff| %>
+            
+                <%= ff.hidden_field :question, :value =>  question.content %>
+              <% end %>
+                <a> Example </a>
+             </span> 
+              <div class="modal fade" id="<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal1" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body" style="height:100%">
+                        <%= image_tag question.image.example %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <%= f.fields_for :answers, Answer.new do |ff| %>
+                <%= ff.text_field :answer %>
+              <% end %>
+        <% end %> 
+       
       
         <p> Add an Image <p>
         <%= f.file_field :image %>

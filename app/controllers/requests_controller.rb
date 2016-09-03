@@ -4,7 +4,6 @@ class RequestsController < ApplicationController
   respond_to :html, :json
  
   def index
-    
     @requests = Request.all
     respond_with = @requests
   end
@@ -28,6 +27,7 @@ class RequestsController < ApplicationController
  
   def new
     @request = Request.new
+    @request.answers.build
   end
 
 
@@ -37,6 +37,8 @@ class RequestsController < ApplicationController
 
   def create
     @request = Request.new(request_params)
+    @request.answers.build
+
     @request.read = false;
     respond_to do |format|
       if @request.save
@@ -91,6 +93,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:name, :email, :address, :city, :state, :region,  :image, :read, :questions )
+      params.require(:request).permit(:name, :email, :address, :city, :state, :region,  :image, :read, :questions, :answers, answers_attributes:[:id, :question, :answer] )
     end
 end
