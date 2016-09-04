@@ -17,6 +17,7 @@
   <div class="requestpage" >
     <div class="userleftpanel col-xs-2 col-sm-3 col-sm-offset-1">
       <div class="row">
+      
         <h2> Welcome <%= current_user.username %> </h2>
       </div>
       <div class="row">
@@ -36,7 +37,8 @@
   <a class="col-lg-offset-1" ui-sref="dashboard.requests">Requests</a>
   <a class="col-lg-offset-1" ui-sref="dashboard.sliderimages">+ Add Slider Images</a><br>
   <a class="col-lg-offset-1" ui-sref="dashboard.questions">+ Add Questions to Request Form</a><br>
-  <div class="full" ui-view="panel"></div>
+  <div class=" full" ui-view="panel"> </div>
+  
 </div>
 
 <% end %>

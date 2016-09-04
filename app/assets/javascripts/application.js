@@ -11,10 +11,12 @@
 // about supported directives.
 //
 //= require angular
+//= require angular-animate
+//= require angular-rails-templates
 //= require jquery
 //= require jquery_ujs
 
-//= require angular-rails-templates
+
 //= require bootstrap.min
 //= require angular-ui-router
 //= require angular-resource
@@ -32,6 +34,6 @@
 
 //= require custom
 //= require Request
-//= require_tree .
+//= require_tree ./templates
 
 $('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); e.preventDefault(); });

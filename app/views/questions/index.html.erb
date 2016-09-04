@@ -1,10 +1,15 @@
 
- <% @questions.each do |question| %>
- <div>
- <%= question.content %>
- <%= link_to "Show", (question) %>
- <%= link_to "Edit",  edit_question_path(question) %>
+ <div ng-controller="QuestionCtrl">
+ <div id="full" ui-view="questionpanel"></div>
+ <div  ng-repeat="question in questions" class="request">
+ 	<div ng-controller="QuestionController">
+ 		<p>{{question.content}}</p>
+ 		<br>
+ 		<a ui-sref="dashboard.questions.show({id: question.id })" >Show </a>
+ 		<a ui-sref="dashboard.questions.edit({id: question.id})"> Edit </a>
+	</div>
  </div>
- <% end %>
 
- <a ui-sref="dashboard.questions.new"> Create New Question </a>
+
+ <a ui-sref="dashboard.questions.new" > Create New Question </a>
+ </div>

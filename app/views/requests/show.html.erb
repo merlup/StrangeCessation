@@ -4,7 +4,7 @@
   
   <% @request.mark_as_read! :for => current_user %>
   <p id="notice"><%= notice %></p>
-<a ui-sref="requests">Close</a>
+<a ui-sref="dashboard.requests">Close</a>
   <p>
     <strong>Name:</strong>
     <%= @request.name %>

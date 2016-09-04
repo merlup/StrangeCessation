@@ -1,14 +1,21 @@
 class QuestionsController < ApplicationController
 before_action :set_question, only: [:show, :edit, :update, :destroy]
 	def new
+	@skip_header = true
+    @skip_footer = true
 		@question = Question.new
 	end
 
 	def index 
-		 @skip_header = true
-    @skip_footer = true
+		@skip_header = true
+   		@skip_footer = true
 		@questions = Question.all
 	end 
+
+	def edit
+		@skip_header = true
+   		@skip_footer = true
+	end
 
 	def create
 	@question = Question.new(question_params)
@@ -39,7 +46,10 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
   end
 
 	def show
+		@skip_header = true
+   		@skip_footer = true
 		@question = Question.find(params[:id])
+		
 	end
 	
 	def delete	

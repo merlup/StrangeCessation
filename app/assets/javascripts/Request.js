@@ -1,4 +1,4 @@
-var app = angular.module("StrangeCessation", ['ui.router', 'ngResource']);
+var app = angular.module("StrangeCessation", ['ui.router', 'ngAnimate','templates' ,'ngResource']);
 
 app.factory('Request', ['$resource',function($resource){
  return $resource('/requests.json', {},{
@@ -9,6 +9,36 @@ app.factory('Request', ['$resource',function($resource){
 
 app.factory('Request', ['$resource', function($resource){
  return $resource('/requests/:id.json', {}, {
+ show: { method: 'GET' },
+ update: { method: 'PUT', params: {id: '@id'} },
+ delete: { method: 'DELETE', params: {id: '@id'} }
+ });
+}]);
+
+app.factory('SliderImage', ['$resource',function($resource){
+ return $resource('/sliderimages.json', {},{
+ query: { method: 'GET', isArray: true },
+ create: { method: 'POST' }
+ })
+}]);
+
+app.factory('SliderImage', ['$resource', function($resource){
+ return $resource('/sliderimages/:id.json', {}, {
+ show: { method: 'GET' },
+ update: { method: 'PUT', params: {id: '@id'} },
+ delete: { method: 'DELETE', params: {id: '@id'} }
+ });
+}]);
+
+app.factory('Question', ['$resource',function($resource){
+ return $resource('/questions.json', {},{
+ query: { method: 'GET', isArray: true },
+ create: { method: 'POST' }
+ })
+}]);
+
+app.factory('Question', ['$resource', function($resource){
+ return $resource('/questions/:id.json', {}, {
  show: { method: 'GET' },
  update: { method: 'PUT', params: {id: '@id'} },
  delete: { method: 'DELETE', params: {id: '@id'} }
@@ -33,15 +63,17 @@ app.factory('User', ['$resource', function($resource){
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('home', { url: '',  views: { 'main': { templateUrl: 'static_pages/home.html'}}})
-      .state('dashboard', { url: '/dashboard',  views: {'main': { templateUrl: 'dashboard', controller: 'RequestsCtrl'}}})
-     .state('dashboard.sliderimages', { url: '',  views: {'panel': { templateUrl: function($stateParams) {return `/sliderimages.html`;}, controller: 'RequestsCtrl'}}})
-     .state('dashboard.sliderimages.new', { url: '',  views: {'panel': { templateUrl: 'sliderimages/new.html', controller: 'RequestsCtrl'}}})
-     .state('dashboard.questions', { url: '',  views: {'panel': { templateUrl: 'questions', controller: 'RequestsCtrl'}}})
-     .state('dashboard.questions.new', { url: '',  views: {'panel': { templateUrl: 'questions/new.html', controller: 'RequestsCtrl'}}})
-    .state('dashboard.requests', { url: '',  views: {'panel': { templateUrl: 'requests.html', controller: 'RequestsCtrl'}}})
-    .state('dashboard.requests.detail',  { url: '/:id', templateUrl: function($stateParams) {return `requests/${$stateParams.id}`;}, controller: 'RequestController'})
+    .state('dashboard', {  url: '/dashboard',  views: {'main': { templateUrl: 'dashboard', controller: 'RequestsCtrl'}}})
+    .state('dashboard.sliderimages', { url: '',  views: {'panel': {templateUrl: 'sliderimages', controller: 'SliderCtrl'}}})
+    .state('dashboard.sliderimages.new', { url: '',  views: {'sliderpanel':  {templateUrl: 'sliderimages/new.html', controller: 'SliderCtrl'}}})
+    .state('dashboard.questions', {  url: '',  views: {'panel': { templateUrl: 'questions', controller: 'QuestionCtrl'}}})
+    .state('dashboard.questions.new', { url: '/questions/new',  views: {'questionpanel': { templateUrl: 'questions/new', controller: 'QuestionCtrl'}}})
+    .state('dashboard.questions.edit',  { url: '/questions/:id/edit', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}/edit`;}, controller: 'QuestionController'}}})
+    .state('dashboard.questions.show',  { url: '/questions/:id', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}`;}, controller: 'QuestionController'}}})
+    .state('dashboard.requests', { url: '',  views: {'panel': { templateUrl: 'requests', controller: 'RequestsCtrl'}}})
+    .state('dashboard.requests.detail',  { url: '/requests/:id', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}`;}, controller: 'RequestController'}}})
     .state('requests.detail.pdf', { url: '.pdf', views: { 'requestpdf': {  templateUrl: function($stateParams) {return `/requests/${$stateParams.id}.pdf`;}, controller: 'RequestController'}}})
-    .state('requests.detail.edit',  { url: '/edit', views: {'main2': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}/edit`;}, controller: 'RequestController'}}})
+    .state('requests.detail.edit',  { url: '/edit', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}/edit`;}, controller: 'RequestController'}}})
     .state('users', { url: '/users', templateUrl: 'users.html', controller: 'UsersCtrl'})
     .state('/users/:id', { url: 'users_show.html', controller: 'UsersCtrl' });
 
@@ -49,8 +81,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 });
 
-app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request', '$location',  function($scope, $stateParams, $state, Request, $location) {
-     
+app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  '$location', function($scope, $stateParams, $state, Request,  $location) {
+     var childState = 1;
 
     $scope.requests = Request.query();
     $scope.unread_requests = [];
@@ -112,6 +144,28 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request', '
 
 
 }]);
+
+app.controller("SliderCtrl", ['$scope', '$state', '$stateParams', 'SliderImage', function($scope, $stateParams, $state, SliderImage,  $location) {
+
+$scope.sliderimages = SliderImage.query();
+$scope.sliderimage = SliderImage.query();
+
+
+}]);
+
+app.controller("QuestionCtrl", ['$scope', '$state', '$stateParams', 'Question', function($scope, $stateParams, $state, Question,  $location) {
+
+$scope.questions = Question.query();
+$scope.question = Question.query();
+
+
+}]);
+
+app.controller("QuestionController", ['Question', '$scope', '$stateParams', QuestionController]);
+
+function QuestionController( $scope, $stateParams, Question ) {
+        $scope.currentQuestionId = $stateParams.question.id;
+};
 
 app.controller("RequestController", ['Request', '$scope', '$stateParams', RequestController]);
 

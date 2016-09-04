@@ -1,16 +1,11 @@
-	<% @sliderimages.each do |thumbnail| %>
-			<div class="col-lg-2" >
-	<%= image_tag  thumbnail.image, class: "thumbs" %>
-	
- 			<div class="row" style="text-align:center;">
- 			<div >
- 			<%= link_to 'Show',thumbnail %>
-          <%= link_to 'Edit', edit_sliderimage_path(thumbnail) %></td>
-          <%= link_to 'Destroy', thumbnail, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div ng-controller="SliderCtrl">
+<div class=" full" ui-view="sliderpanel"> </div>
+<div ng-repeat="sliderimage in sliderimages" >
+{{sliderimage.image}}
+</div>
           </div>
-          </div>
-          </div>
+     
 
-<% end %>
+
 <a ui-sref="dashboard.sliderimages.new"> Create Slider Image </a>
  

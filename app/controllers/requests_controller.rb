@@ -19,7 +19,6 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
      respond_with do |request|
       request.as_json
-
       request.pdf do
         pdf = RequestPdf.new(@request)
         send_data pdf.render, filename: "request_#{@request.id}", type: "application/pdf", disposition: "inline"
@@ -30,6 +29,7 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @request.answers.build
+
   end
 
 
