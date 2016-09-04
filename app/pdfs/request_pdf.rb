@@ -10,7 +10,7 @@
   end
 
   def header
-  	image "app/assets/images/HEADER.jpeg", scale: 0.3, position: :center
+  	image "app/assets/images/HEADER.jpg", scale: 0.3, position: :center
   end
 
   def quote_id

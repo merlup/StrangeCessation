@@ -4,6 +4,8 @@ class RequestsController < ApplicationController
   respond_to :html, :json
  
   def index
+    @skip_header = true
+    @skip_footer = true
     @requests = Request.paginate(:page => params[:page], :per_page => 5)
     respond_with = @requests
   end

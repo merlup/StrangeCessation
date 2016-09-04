@@ -1,5 +1,10 @@
 
  <% @questions.each do |question| %>
+ <div>
  <%= question.content %>
  <%= link_to "Show", (question) %>
+ <%= link_to "Edit",  edit_question_path(question) %>
+ </div>
  <% end %>
+
+ <a ui-sref="dashboard.questions.new"> Create New Question </a>

@@ -8,8 +8,3 @@ function switchFields() {
 
 }
 
-$(document).ready(function () {
-    document.getElementById("lgfields").style.visibility = "hidden";
-    document.getElementById("selectedImage").innerHTML = imagesArray[0].path;
-});
-

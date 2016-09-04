@@ -13,88 +13,47 @@
 
 
 <% if logged_in? %>
+<div ng-controller="RequestsCtrl">
+  <div class="requestpage" >
+    <div id='requests' class="requests "  >
+    <div id="full" ui-view="panel"></div>
+    
+    <div class="requesticons col-xs-12" >
+      <div class="openrequest col-xs-2">
+        <h3> {{ total_requests.length }} Active Jobs</h3>
+      </div>
+      <div class="newrequest col-xs-2 col-xs-offset-1">
+        <h3>
+          {{ unread_requests.length }} New Request
+        </h3>
+      </div>
+      <div class=" col-xs-2 col-offset-1">
+        <h3> Deleted Requests </h3>
+      </div>
+    </div>
+    <button  class="btn-sm btn-primary" id="back" ng-click="backPage()" style="visibility:hidden;">Back page</button>
 
-<div class="requestpage" >
-  <div class="userleftpanel col-xs-2 col-sm-3 col-sm-offset-1">
-    <div class="row">
-      <h1> Welcome <%= current_user.username %> </h1>
-    </div>
-    <div class="row">
-      <%= image_tag current_user.avatar %>
-    </div>
-    <div class="row">
-     
-      <a onclick="switchSettings()"> Menu </a>
-        <div id="settings" style="visibility:hidden;">
-        <br>
-         <%= link_to "+ Add Slider Images"  , sliderimages_path, class: " " %><br>
-        <%= link_to "+ Add Questions to Request Form", questions_path, class: " " %>
-        <br>
-        <%= link_to "Manage Users", users_path, class: " " %>
-       
+    <button class="btn-sm btn-primary" id="next" ng-click="nextPage()" style="visibility:visible;">Next page</button>
 
-        </div>
-    </div>
-       
-  </div>
-  
-  <div class="requesticons col-xs-8">
-    <div class="openrequest col-xs-2">
-     <h2><%= @requests.count %> Open Jobs</h2>
-    </div>
-    <div class="newrequest col-xs-2 col-xs-offset-1">
-      <h2>
-      <% @myarray = [] %>
-      <% @requests.each do |request| %> 
-        <% if request.unread?(current_user) == true %>
-          <% @myarray.push(request) %>
-        <% end %>
-      <% end %>    
-      <%= @myarray.count %> New Request
-      </h2>
-    </div>
-    <div class="deletedquotes col-xs-2 col-offset-1">
-      <h2> Deleted Requests </h2>
-    </div>
-  </div>
+    <div  ng-repeat="request in requests" class="request">
 
-
-  
-<div id='requests' class="requests col-md-5" ng-controller="RequestsCtrl" >
-  <div id="full" ui-view=""></div>
-
-  <button  class="btn-sm btn-primary" id="back" ng-click="backPage()" style="visibility:hidden;">Back page</button>
- 
-  <button class="btn-sm btn-primary" id="next" ng-click="nextPage()">Next page</button>
-  
-  <div  ng-repeat="request in requests" class="request">
-   
-  
-    <div >
-   
+    <div>
       <p  class="col-xs-12" ng-if="request.read == false">*NEW*</p>
       <p class=" col-xs-12">Request #{{request.id}}</p>
       <p ng-controller="RequestController">
-          <a class="col-xs-offset-8 col-xs-2" ui-sref="requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
-          <a class="col-xs-offset-8 col-xs-2"  ng-click="deleteRequest({id: request.id})" ng-init="fullrequest = false">Delete</a>
+        <a class="col-xs-offset-8 col-xs-2" ui-sref="dashboard.requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
+        <a class="col-xs-offset-8 col-xs-2"  ng-click="deleteRequest({id: request.id})" ng-init="fullrequest = false" confirm="Are you sure?">Delete</a>
       </p>
       <p class="col-xs-6">From: {{request.name}}</p>
       <p class="col-xs-6"> Email:{{request.email}}</p><br>
       <p class="col-xs-6">{{request.city}}, {{request.state}}, {{request.region}} </p>
       <br>
       <br>
-      
     </div>
-    <br>
-   
+      <br>
   </div>
-  
   <br>
 
 </div>
-    </div>
-    </div>
-
-
-
+</div>
 <% end %>

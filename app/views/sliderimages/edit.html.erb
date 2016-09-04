@@ -1,2 +1,7 @@
-<h1>Sliderimages#edit</h1>
-<p>Find me in app/views/sliderimages/edit.html.erb</p>
+<%= form_for (@sliderimage) do |f| %>
+<%= f.label :Question %>
+
+<%= f.label :Image %>
+<%= f.file_field :image %>
+<%= f.submit %>
+<% end %>

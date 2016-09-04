@@ -1,5 +1,7 @@
 /*
+
  *= require_tree .
+
  *= require_self
  */
 
@@ -242,7 +244,7 @@
 }
 
 .request {
-	margin-top: 10px;
+
 	margin-bottom: 20px;
 	height: 40px;
 	font-size: 16px;

@@ -5,6 +5,8 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
 	end
 
 	def index 
+		 @skip_header = true
+    @skip_footer = true
 		@questions = Question.all
 	end 
 
@@ -22,6 +24,19 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
 	      end
 	    end
 	end
+
+
+  def update
+    respond_to do |format|
+      if @question.update(question_params)
+        format.html { redirect_to question_path, notice: 'Question was successfully updated.' }
+        format.json { render :show, status: :ok, location: @question }
+      else
+        format.html { render :edit }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
 	def show
 		@question = Question.find(params[:id])

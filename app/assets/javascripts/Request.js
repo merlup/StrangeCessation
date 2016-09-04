@@ -1,4 +1,4 @@
-var app = angular.module("StrangeCessation", ['ui.router', 'ngResource', 'pdf']);
+var app = angular.module("StrangeCessation", ['ui.router', 'ngResource']);
 
 app.factory('Request', ['$resource',function($resource){
  return $resource('/requests.json', {},{
@@ -33,8 +33,13 @@ app.factory('User', ['$resource', function($resource){
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('home', { url: '',  views: { 'main': { templateUrl: 'static_pages/home.html'}}})
-    .state('requests', { url: '/requests',  views: {'main': { templateUrl: 'requests.html', controller: 'RequestsCtrl'}}})
-    .state('requests.detail',  { url: '/:id', templateUrl: function($stateParams) {return `/requests/${$stateParams.id}`;}, controller: 'RequestController'})
+      .state('dashboard', { url: '/dashboard',  views: {'main': { templateUrl: 'dashboard', controller: 'RequestsCtrl'}}})
+     .state('dashboard.sliderimages', { url: '',  views: {'panel': { templateUrl: function($stateParams) {return `/sliderimages.html`;}, controller: 'RequestsCtrl'}}})
+     .state('dashboard.sliderimages.new', { url: '',  views: {'panel': { templateUrl: 'sliderimages/new.html', controller: 'RequestsCtrl'}}})
+     .state('dashboard.questions', { url: '',  views: {'panel': { templateUrl: 'questions', controller: 'RequestsCtrl'}}})
+     .state('dashboard.questions.new', { url: '',  views: {'panel': { templateUrl: 'questions/new.html', controller: 'RequestsCtrl'}}})
+    .state('dashboard.requests', { url: '',  views: {'panel': { templateUrl: 'requests.html', controller: 'RequestsCtrl'}}})
+    .state('dashboard.requests.detail',  { url: '/:id', templateUrl: function($stateParams) {return `requests/${$stateParams.id}`;}, controller: 'RequestController'})
     .state('requests.detail.pdf', { url: '.pdf', views: { 'requestpdf': {  templateUrl: function($stateParams) {return `/requests/${$stateParams.id}.pdf`;}, controller: 'RequestController'}}})
     .state('requests.detail.edit',  { url: '/edit', views: {'main2': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}/edit`;}, controller: 'RequestController'}}})
     .state('users', { url: '/users', templateUrl: 'users.html', controller: 'UsersCtrl'})
@@ -44,36 +49,56 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 });
 
-app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request', '$location',  function($scope, $stateParams, $state, Request, $location ) {
+app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request', '$location',  function($scope, $stateParams, $state, Request, $location) {
      
 
     $scope.requests = Request.query();
+    $scope.unread_requests = [];
     $scope.request = Request.query();
+    $scope.request_arr = [];
+
+    $scope.requests.$promise.then(function (results) {
+        angular.forEach(results, function (result) {
+            result.active = true;
+            $scope.request_arr.push(result);
+            if(result.read == false) {
+                $scope.unread_requests.push(result);
+            }  
+        });
+    });
+
+
+
+   for(var i = 0; i <= $scope.unread_requests.length; i++) {
+    console.log($scope.unread_requests);
+   }
+
   
     $scope.deleteRequest = function (request) {
         Request.delete({id: request.id})
-        $scope.requests.splice(request, 1)
         console.log("deleted" + request.id);
+        $scope.requests.splice(request, 1)
         
-    }
+    };
 
     var counter = 1; 
     var back_button = document.getElementById("back");
-    var next_button = document.getElementById("back");
-
+    var next_button = document.getElementById("next");
+    
     $scope.nextPage = function() {
     $scope.requests = Request.query({page: counter +1}) 
-    var request_entries = Request.query.length   
+    var page_max =  $scope.request_arr.length ;
     counter += 1 ; 
-
     back_button.style.visibility = "visible" ;
 
      if (counter == 0) {
             back_button.style.visibility = "hidden" ;
         }
+    if (counter >= page_max ) {
+        next_button.style.visibility = "hidden" ;
+        }
    
     }   
-   
 
     $scope.backPage = function() {
     $scope.requests = Request.query({page: counter - 1})   
@@ -81,6 +106,7 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request', '
 
         if (counter <= 1) {
             back_button.style.visibility = "hidden" ;
+            next_button.style.visibility = "visible" ;
         }  
     }
 

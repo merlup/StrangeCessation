@@ -6,7 +6,7 @@
                         <a onclick="switchFields()"><%= image_tag "login.png", class: "loginIcon loginImage" %></a>
                     </span>
                 <div id="login" class="col-sm-offset-10">
-                    <div id="lgfields">
+                    <div id="lgfields" style="visibility:hidden;">
                         <%= render partial: "sessions/new" %>
                     </div>
                 </div>
@@ -15,8 +15,8 @@
             <span>Strange Cessation</span>
                 <div class="navigation">
                     <a ui-sref="home">Home</a>
-                    <a ui-sref="requests">Requests</a>
-                    <a ui-sref="users">Users</a>
+                    <a ui-sref="dashboard">Dashboard</a>
+                    
                     <%= link_to "Log out", logout_path, method: "delete" %>
                 </div>
         <% end %>

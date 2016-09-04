@@ -10,19 +10,26 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require angular
 //= require jquery
 //= require jquery_ujs
-//= require angular
+
+//= require angular-rails-templates
 //= require bootstrap.min
 //= require angular-ui-router
 //= require angular-resource
 //= require angular-ui-bootstrap
-//= require pdf.combined
+
+//= require angular-resource
+
+//= require angular-material
+//= require angular-animate
+//= require angular-aria
+
+
 //= require angular-pdf
 //= require angular-pdf.min
-//= require pdf
-//= require pdf.worker
-//= require pdf_viewer
+
 //= require custom
 //= require Request
 //= require_tree .

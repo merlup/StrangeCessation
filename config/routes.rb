@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'questions/new',  to: 'questions#create'
   get 'static_pages/home'
   resources :users
+  resources :dashboard
   resources :answers
   resources :sliderimages
   resources :questions
