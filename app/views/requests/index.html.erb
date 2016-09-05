@@ -1,15 +1,4 @@
- <script type ="text/javascript">
 
-        
-
-        function switchSettings() {
-          if(document.getElementById('settings').style.visibility == 'hidden') {
-            document.getElementById('settings').style.visibility = "visible"
-          } else {
-            document.getElementById('settings').style.visibility = 'hidden'
-          };
-        }
-      </script>
 
 
 <% if logged_in? %>
@@ -17,43 +6,45 @@
   <div class="requestpage" >
     <div id='requests' class="requests "  >
    <div id="full" ui-view="requestspanel"></div>
-
+   <div id="nav_menu">
     <div class="requesticons col-xs-12" >
       <div class="openrequest col-xs-2">
-        <h3> {{ total_requests.length }} Active Jobs</h3>
+        <h3> <%= @requests.count %> Active Jobs</h3>
       </div>
       <div class="newrequest col-xs-2 col-xs-offset-1">
         <h3>
-          {{ unread_requests.length }} New Request
+          ? New Request
         </h3>
       </div>
       <div class=" col-xs-2 col-offset-1">
         <h3> Deleted Requests </h3>
-      </div>
+      </div> 
     </div>
     <button  class="btn-sm btn-primary" id="back" ng-click="backPage()" style="visibility:hidden;">Back page</button>
 
-    <button class="btn-sm btn-primary" id="next" ng-click="nextPage()" style="visibility:visible;">Next page</button>
+    <button class="btn-sm btn-primary" id="next" ng-click="nextPage(<%= @requests.count %>)">Next page</button>
 
     <div  ng-repeat="request in requests" class="request">
-
-    <div>
-      <p  class="col-xs-12" ng-if="request.read == false">*NEW*</p>
-      <p class=" col-xs-12">Request #{{request.id}}</p>
-      <p ng-controller="RequestController">
-        <a class="col-xs-offset-8 col-xs-2" ui-sref="dashboard.requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
-        <a class="col-xs-offset-8 col-xs-2"  ng-click="deleteRequest({id: request.id})" ng-init="fullrequest = false" confirm="Are you sure?">Delete</a>
-      </p>
-      <p class="col-xs-6">From: {{request.name}}</p>
-      <p class="col-xs-6"> Email:{{request.email}}</p><br>
-      <p class="col-xs-6">{{request.city}}, {{request.state}}, {{request.region}} </p>
-      <br>
-      <br>
+      <div>
+        <p  class="col-xs-12" ng-if="request.read == false">*NEW*</p>
+         <a class="col-xs-offset-8 col-xs-2" ui-sref="dashboard.requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
+          <a class="col-xs-offset-8 col-xs-2"  ng-click="deleteRequest({id: request.id})" ng-init="fullrequest = false" confirm="Are you sure?">Delete</a>
+        <p class=" col-xs-12">Request #{{request.id}}</p>
+        
+         
+        
+        <p class="col-xs-6">From: {{request.name}}</p>
+        <p class="col-xs-6"> Email:{{request.email}}</p><br>
+        <p class="col-xs-6">{{request.city}}, {{request.state}}, {{request.region}} </p>
+        <br>
+        <br>
+      </div>
     </div>
-      <br>
+    <br>
   </div>
   <br>
 
+</div>
 </div>
 </div>
 <% end %>

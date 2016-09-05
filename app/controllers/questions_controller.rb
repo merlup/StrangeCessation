@@ -52,8 +52,13 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
 		
 	end
 	
-	def delete	
-	end
+	def destroy
+    @question.destroy
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+
 
 	private
 

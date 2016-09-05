@@ -1,79 +1,41 @@
-var app = angular.module("StrangeCessation", ['ui.router', 'ngAnimate','templates' ,'ngResource']);
+var app = angular.module("StrangeCessation", ['ui.router', 'ngAnimate','templates' , 'rails']);
 
-app.factory('Request', ['$resource',function($resource){
- return $resource('/requests.json', {},{
- query: { method: 'GET', isArray: true },
- create: { method: 'POST' }
- })
+app.factory('Request', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/requests', name: 'request'});
 }]);
 
-app.factory('Request', ['$resource', function($resource){
- return $resource('/requests/:id.json', {}, {
+
+app.factory('SliderImage', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/sliderimages', name: 'sliderimage'});
+}]);
+
+app.factory('Question', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/questions', name: 'question'}, {
  show: { method: 'GET' },
  update: { method: 'PUT', params: {id: '@id'} },
  delete: { method: 'DELETE', params: {id: '@id'} }
  });
 }]);
 
-app.factory('SliderImage', ['$resource',function($resource){
- return $resource('/sliderimages.json', {},{
- query: { method: 'GET', isArray: true },
- create: { method: 'POST' }
- })
+app.factory('Users', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/users', name: 'user'});
 }]);
 
-app.factory('SliderImage', ['$resource', function($resource){
- return $resource('/sliderimages/:id.json', {}, {
- show: { method: 'GET' },
- update: { method: 'PUT', params: {id: '@id'} },
- delete: { method: 'DELETE', params: {id: '@id'} }
- });
-}]);
-
-app.factory('Question', ['$resource',function($resource){
- return $resource('/questions.json', {},{
- query: { method: 'GET', isArray: true },
- create: { method: 'POST' }
- })
-}]);
-
-app.factory('Question', ['$resource', function($resource){
- return $resource('/questions/:id.json', {}, {
- show: { method: 'GET' },
- update: { method: 'PUT', params: {id: '@id'} },
- delete: { method: 'DELETE', params: {id: '@id'} }
- });
-}]);
-
-app.factory('Users', ['$resource',function($resource){
- return $resource('/users.json', {},{
- query: { method: 'GET', isArray: true },
- create: { method: 'POST' }
- })
-}]);
-
-app.factory('User', ['$resource', function($resource){
- return $resource('/users/:id.json', {}, {
- show: { method: 'GET' },
- update: { method: 'PUT', params: {id: '@id'} },
- delete: { method: 'DELETE', params: {id: '@id'} }
- });
-}]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
     .state('home', { url: '',  views: { 'main': { templateUrl: 'static_pages/home.html'}}})
     .state('dashboard', {  url: '/dashboard',  views: {'main': { templateUrl: 'dashboard', controller: 'RequestsCtrl'}}})
-    .state('dashboard.sliderimages', { url: '',  views: {'panel': {templateUrl: 'sliderimages', controller: 'SliderCtrl'}}})
-    .state('dashboard.sliderimages.new', { url: '',  views: {'sliderpanel':  {templateUrl: 'sliderimages/new.html', controller: 'SliderCtrl'}}})
-    .state('dashboard.questions', {  url: '',  views: {'panel': { templateUrl: 'questions', controller: 'QuestionCtrl'}}})
-    .state('dashboard.questions.new', { url: '/questions/new',  views: {'questionpanel': { templateUrl: 'questions/new', controller: 'QuestionCtrl'}}})
-    .state('dashboard.questions.edit',  { url: '/questions/:id/edit', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}/edit`;}, controller: 'QuestionController'}}})
-    .state('dashboard.questions.show',  { url: '/questions/:id', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}`;}, controller: 'QuestionController'}}})
-    .state('dashboard.requests', { url: '',  views: {'panel': { templateUrl: 'requests', controller: 'RequestsCtrl'}}})
-    .state('dashboard.requests.detail',  { url: '/requests/:id', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}`;}, controller: 'RequestController'}}})
-    .state('requests.detail.pdf', { url: '.pdf', views: { 'requestpdf': {  templateUrl: function($stateParams) {return `/requests/${$stateParams.id}.pdf`;}, controller: 'RequestController'}}})
-    .state('requests.detail.edit',  { url: '/edit', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}/edit`;}, controller: 'RequestController'}}})
+    .state('dashboard.sliderimages', { url: '/sliderimages',  views: {'panel': {templateUrl: 'sliderimages', controller: 'SliderCtrl'}}})
+    .state('dashboard.sliderimages.new', { url: '/new',  views: {'sliderpanel':  {templateUrl: 'sliderimages/new.html', controller: 'SliderCtrl'}}})
+    .state('dashboard.questions', {  url: '/questions',  views: {'panel': { templateUrl: 'questions', controller: 'QuestionCtrl'}}})
+    .state('dashboard.questions.new', { url: '/new',  views: {'questionpanel': { templateUrl: 'questions/new', controller: 'QuestionCtrl'}}})
+    .state('dashboard.questions.edit',  { url: '/:id/edit', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}/edit`;}, controller: 'QuestionCtrl'}}})
+    .state('dashboard.questions.show',  { url: '/:id', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}`;}, controller: 'QuestionCtrl'}}})
+    .state('dashboard.requests', { url: '/requests',  views: {'panel': { templateUrl: 'requests', controller: 'RequestsCtrl'}}})
+    .state('dashboard.requests.detail',  { url: '/:id', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}`;}, controller: 'RequestsCtrl'}}})
+    .state('dashboard.requests.detail.pdf', { url: '.pdf', views: { 'requestspanel': {  templateUrl: function($stateParams) {return `/requests/${$stateParams.id}.pdf`;}, controller: 'RequestCtrl'}}})
+    .state('dashboard.requests.detail.edit',  { url: '/edit', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}/edit`;}, controller: 'RequestCtrl'}}})
     .state('users', { url: '/users', templateUrl: 'users.html', controller: 'UsersCtrl'})
     .state('/users/:id', { url: 'users_show.html', controller: 'UsersCtrl' });
 
@@ -81,35 +43,40 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 });
 
-app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  '$location', function($scope, $stateParams, $state, Request,  $location) {
-     var childState = 1;
-
-    $scope.requests = Request.query();
+app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  '$location', '$http', function($scope,  $state, $stateParams, Request, $http, $location) {
+    
+    $scope.searching = true;
+    $scope.requests = [];
     $scope.unread_requests = [];
-    $scope.request = Request.query();
-    $scope.request_arr = [];
+    $scope.show_parent_panel = true;
 
-    $scope.requests.$promise.then(function (results) {
-        angular.forEach(results, function (result) {
-            result.active = true;
-            $scope.request_arr.push(result);
-            if(result.read == false) {
-                $scope.unread_requests.push(result);
-            }  
-        });
+    var nav_menu = document.getElementById("nav_menu");
+
+    $scope.state = $state;
+
+    Request.query({ id: 'id' }).then(function (results) {
+        $scope.requests = results;
+        $scope.searching = false;
     });
 
+     Request.query({ read: false }).then(function (results) {
+        $scope.unread_requests = results;
+        $scope.searching = false;
+    });
 
+     if($state.$current == "dashboard.requests.detail") {
+        nav_menu.style.visibility = "hidden";
+     } 
 
-   for(var i = 0; i <= $scope.unread_requests.length; i++) {
-    console.log($scope.unread_requests);
+   $scope.closeDetail = function() {
+    $state.go("dashboard.requests");
+    nav_menu.style.visibility = "visible";
    }
-
-  
+     
     $scope.deleteRequest = function (request) {
-        Request.delete({id: request.id})
+        Request.$delete("requests/" + request.id);
         console.log("deleted" + request.id);
-        $scope.requests.splice(request, 1)
+        $scope.requests.splice($scope.requests.indexOf(request), 1);
         
     };
 
@@ -117,23 +84,32 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  
     var back_button = document.getElementById("back");
     var next_button = document.getElementById("next");
     
-    $scope.nextPage = function() {
-    $scope.requests = Request.query({page: counter +1}) 
-    var page_max =  $scope.request_arr.length ;
+    $scope.nextPage = function(request_total) {
+    $scope.requests_per_page = Request.query({page: counter +1}).then(function (results) {
+        $scope.requests = results;
+        $scope.searching = false;
+    });
+
+    $scope.requests = Request.query({ id: 'id' });
+    var page_max =  Math.round(request_total / 5);
     counter += 1 ; 
+    
     back_button.style.visibility = "visible" ;
 
      if (counter == 0) {
             back_button.style.visibility = "hidden" ;
         }
-    if (counter >= page_max ) {
+    if (counter == page_max ) {
         next_button.style.visibility = "hidden" ;
         }
    
     }   
 
     $scope.backPage = function() {
-    $scope.requests = Request.query({page: counter - 1})   
+    $scope.requests_per_page = Request.query({page: counter - 1}).then(function (results) {
+        $scope.requests = results;
+        $scope.searching = false;
+    }); 
     counter -= 1 ;   
 
         if (counter <= 1) {
@@ -150,28 +126,56 @@ app.controller("SliderCtrl", ['$scope', '$state', '$stateParams', 'SliderImage',
 $scope.sliderimages = SliderImage.query();
 $scope.sliderimage = SliderImage.query();
 
+SliderImage.query({id: 'id'}).then(function (results) {
+    $scope.sliderimages = results;
+    $scope.searching = false;
+});
+
+  $scope.createSliderImage = function () {
+        new SliderImage({
+            image: this.image 
+        }).create().then(function(SliderImage) {
+            $scope.image = '',
+            $scope.silderimages.push(SliderImage);
+           console.log(SliderImage);
+       });
+    }
 
 }]);
 
-app.controller("QuestionCtrl", ['$scope', '$state', '$stateParams', 'Question', function($scope, $stateParams, $state, Question,  $location) {
+app.controller("QuestionCtrl", ['$scope', '$state',  '$stateParams', 'Question', '$location',  function($scope, $stateParams, $state, Question, $location) {
 
-$scope.questions = Question.query();
-$scope.question = Question.query();
+$scope.searching = true;
+
+$scope.questions = [];
+
+    Question.query({ id: 'id' }).then(function (results) {
+        $scope.questions = results;
+        $scope.searching = false;
+    });
+
+     
+    $scope.deleteQuestion = function (question) {
+        Question.$delete("questions/" + question.id);
+        console.log("deleted" + question.id);
+        $scope.questions.splice($scope.questions.indexOf(question), 1)
+        
+    };
+
+    $scope.createQuestion = function () {
+        new Question({
+            content: this.content,
+            image: this.image 
+        }).create().then(function(Question) {
+            $scope.content = '',
+            $scope.questions.push(Question);
+           console.log(Question);
+       });
+    }
 
 
 }]);
 
-app.controller("QuestionController", ['Question', '$scope', '$stateParams', QuestionController]);
-
-function QuestionController( $scope, $stateParams, Question ) {
-        $scope.currentQuestionId = $stateParams.question.id;
-};
-
-app.controller("RequestController", ['Request', '$scope', '$stateParams', RequestController]);
-
-function RequestController( $scope, $stateParams, Request ) {
-    	$scope.currentRequestId = $stateParams.request.id;
-};
 
 app.controller("UsersCtrl", ['$scope', '$http', 'Users', 'User', '$location',  function($scope, $http, Users, User, $location ) {
         $scope.users = Users.query();

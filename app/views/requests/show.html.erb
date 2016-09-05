@@ -4,7 +4,7 @@
   
   <% @request.mark_as_read! :for => current_user %>
   <p id="notice"><%= notice %></p>
-<a ui-sref="dashboard.requests">Close</a>
+<button ng-click="closeDetail()">Close</button>
   <p>
     <strong>Name:</strong>
     <%= @request.name %>
@@ -47,20 +47,10 @@
   
   <%= image_tag  @request.image%>
 
-   
+<%= link_to "View PDF", request_path(@request, :format => "pdf") , :target => "_blank" %>
 
+<a ui-sref="dashboard.requests.detail.edit">Edit</a>
 
-  
-<%= link_to "View PDF", request_path(@request, :format => "pdf") , 'data-popup' => true %>
-
-<a ui-sref="requests.detail.edit">Edit</a>
-  
-  <%= link_to 'Edit', edit_request_path(@request) %> 
-   <%= link_to 'Destroy', @request, method: :delete %>
-
-  
-
-  
 <% end %>
 <div ui-view="main2"></div>
 

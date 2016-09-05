@@ -2,11 +2,12 @@
  <div ng-controller="QuestionCtrl">
  <div id="full" ui-view="questionpanel"></div>
  <div  ng-repeat="question in questions" class="request">
- 	<div ng-controller="QuestionController">
+ 	<div>
  		<p>{{question.content}}</p>
  		<br>
  		<a ui-sref="dashboard.questions.show({id: question.id })" >Show </a>
  		<a ui-sref="dashboard.questions.edit({id: question.id})"> Edit </a>
+ 		<a ng-click="deleteQuestion({id: question.id})" confirm="Are you sure?">Delete</a>
 	</div>
  </div>
 

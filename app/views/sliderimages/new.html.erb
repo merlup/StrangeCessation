@@ -1,7 +1,4 @@
-<%= form_for (Sliderimage.new) do |f| %>
-<%= f.label :Question %>
-
-<%= f.label :Image %>
-<%= f.file_field :image %>
-<%= f.submit %>
-<% end %>
+<form class="form-group" ng-submit="createSliderImage()">
+<input type="file" class="form-control" placeholder="Enter a Question" ng-model="image"></input>
+<input type="submit"  id="submit" value="Submit">
+</form>

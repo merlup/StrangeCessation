@@ -53,6 +53,7 @@ GEM
     angular-ui-router-rails (0.2.15)
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
+    angularjs-rails-resource (2.0.0)
     arel (6.0.3)
     autoprefixer-rails (6.4.1)
       execjs
@@ -74,6 +75,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.6.6)
+      i18n (~> 0.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -189,11 +192,13 @@ DEPENDENCIES
   angular-ui-bootstrap-rails
   angular-ui-router-rails
   angular_rails_csrf
+  angularjs-rails-resource (~> 2.0.0)
   bcrypt
   bootstrap-sass
   byebug
   carrierwave!
   coffee-rails (~> 4.1.0)
+  faker
   jbuilder (~> 2.0)
   jquery-rails
   prawn
