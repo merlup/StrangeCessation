@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'dashboard/questions/new' => 'questions#new'
   get 'dashboard/sliderimages' => 'sliderimages#index'
   get '/dashboard/questions/sliderimages' => 'sliderimages#index'
+  get '/dashboard/sliderimages/new' => 'sliderimages#new'
+  get '/dashboard/sliderimages/dashboard' => 'dashboard#index'
   get 'dashboard/questions/static_pages/home' => 'static_pages#home'
   get 'dashboard/questions/static_pages/dashboard' => 'static_pages#dashboard'
   get 'dashboard/requests/questions' => 'questions#index'
