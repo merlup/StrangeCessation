@@ -16,4 +16,4 @@
 !/log/.keep
 /tmp
 
-/.secrets.yml
+secrets.yml
