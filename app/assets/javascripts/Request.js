@@ -99,7 +99,7 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  
      if (counter == 0) {
             back_button.style.visibility = "hidden" ;
         }
-    if (counter == page_max ) {
+    if (counter >= page_max ) {
         next_button.style.visibility = "hidden" ;
         }
    
