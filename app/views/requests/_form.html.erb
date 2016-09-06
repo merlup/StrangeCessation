@@ -46,17 +46,25 @@
     
 
     <div class="qsect4">
-      <div class="col-md-6 leftq">
+      <div class="col-md-6 leftq" ng-controller="QuestionCtrl">
     
- 
-   
-        <% @questions.each do |question| %>
+     
+    
+        <% @questions[0..6].each do |question| %>
        
           <div>
             <% if question.image.blank? %>
               <%= question.content %>
               <%= f.fields_for :answers, Answer.new do |ff| %>
-                <%= ff.text_field :answer %>
+               <% if question.answer_type == "Regular" %> 
+                <%= ff.text_field :answer, class: 'form-control' %>
+                <% elsif question.answer_type == "Dropdown" %>
+                <%= ff.select :answer, options_for_select([['Something'],['Something']]), {} %>
+                <% elsif question.answer_type == "Radio" %>
+                <p> Radio Tags here </p>
+                <% else %>
+                 <%= ff.text_field :answer, class: 'form-control' %>
+                <% end %>
                 <%= ff.hidden_field :question, :value =>  question.content %>
               <% end %>
             <% else %>
@@ -79,7 +87,7 @@
                 </div>
               </div>
               <%= f.fields_for :answers, Answer.new do |ff| %>
-                <%= ff.text_field :answer %>
+                <%= ff.text_field :answer, class: 'form-control' %>
               <% end %>
             <% end %>
           </div>
@@ -89,13 +97,20 @@
       
       </div>
       <div class="col-md-6 rightq">
-       <% @questions.each do |question| %>
+      <% if @questions.length >= 6 %>
+       <% @questions[6..@questions.length-1].each do |question| %>
         
           <div>
             <% if question.image.blank? %>
+            <br>
               <%= question.content %>
                <%= f.fields_for :answers, Answer.new do |ff| %>
-                <%= ff.text_field :answer %>
+               <% if question.answer_type == "Regular" %> 
+                <%= ff.text_field :answer, class: 'form-control' %>
+                <% elsif question.answer_type == "Dropdown" %>
+                <h2> dropdown </h2>
+                <%= ff.select :answer, options_for_select([['Something'],['Something']]), {} %>
+                <% end %>
                 <%= ff.hidden_field :question, :value =>  question.content %>
               <% end %>
             <% else %>
@@ -119,9 +134,10 @@
             <% end %>
           </div>
           <%= f.fields_for :answers, Answer.new do |ff| %>
-                <%= ff.text_field :answer %>
+                <%= ff.text_field :answer, class: 'form-control' %>
               <% end %>
         <% end %> 
+      <% end %>
        
       
         <p> Add an Image <p>

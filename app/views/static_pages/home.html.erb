@@ -12,13 +12,7 @@
 <% end %> 
 
 	<script type="text/javascript">
-		function changeImage(id) {
-			for( var i = 0; i < imagesArray.length; i++) {
-				if(imagesArray[i].id == id) {
-					document.getElementById('selectedImage').innerHTML = imagesArray[i].path;
-				}
-			}
-		}	
+	
 	</script>
 	
 <div class="leftsection col-md-3 col-lg-2 col-lg-offset-1 col-xs-offset-0">
@@ -137,8 +131,7 @@
 	</div>
 </div>
 
-
-
+<%= javascript_include_tag "home" %>
 
 
 

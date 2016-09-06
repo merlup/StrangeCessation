@@ -38,9 +38,9 @@
   def images 
   	move_down 20
       if @request.image.blank?
-
+        return
       else
-  	 image "public#{@request.image}", scale: 0.5 
+  	   image "public#{@request.image}", scale: 0.5 
       end
   end
 

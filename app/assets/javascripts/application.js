@@ -35,7 +35,8 @@
 //= require angular-pdf.min
 
 //= require custom
-//= require Request
+//= require AngularApp
+//= require home
 //= require_tree ./templates
 
 $('a[data-popup]').on('click', function(e) { window.open($(this).attr('href')); e.preventDefault(); });

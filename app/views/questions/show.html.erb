@@ -1,7 +1,7 @@
 
 <div ng-controller="QuestionCtrl">
 
-<a ui-sref="dashboard.questions">Close</a>
+<a ng-click=" goBack()">Close</a>
 <br>
 <%= @question.content %>
 <br>

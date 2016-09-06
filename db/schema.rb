@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906060116) do
+ActiveRecord::Schema.define(version: 20160906194827) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "question"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20160906060116) do
     t.datetime "updated_at"
     t.string   "images"
     t.string   "image"
+    t.string   "answer_type"
+    t.string   "choice_amount"
   end
 
   create_table "read_marks", force: :cascade do |t|

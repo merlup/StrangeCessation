@@ -1,3 +1,9 @@
+
+<div ng-controller="QuestionCtrl">
+
+<a ng-click=" goBack()">Close</a>
+
+
 <%= form_for (@question) do |f| %>
 <%= f.label :Question %>
 <%= f.text_field :content %>
@@ -5,3 +11,4 @@
 <%= f.file_field :image %>
 <%= f.submit %>
 <% end %>
+</div>

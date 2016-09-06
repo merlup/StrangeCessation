@@ -1,8 +1,8 @@
 class AnswersController < ApplicationController
 
 	def new
-	@answer = Answer.new
-end
+		@answer = Answer.new
+	end
 	def create
 		@answer = Answer.new(answer_params)
 		if @answer.save

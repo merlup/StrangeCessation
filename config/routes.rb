@@ -17,6 +17,7 @@ delete '/dashboard/price_sheet_images/:id' => 'price_sheet_images#destroy'
 
 #Question Routes
   get 'dashboard/questions' => 'questions#index'
+  get '/dashboard/sliderimages/questions'  => 'questions#index'
   get 'dashboard/questions/:id/edit' => 'questions#edit'
   get 'dashboard/questions/new' => 'questions#new'
    post 'questions/new',  to: 'questions#create'
@@ -39,7 +40,8 @@ delete '/dashboard/price_sheet_images/:id' => 'price_sheet_images#destroy'
   get 'dashboard/questions/static_pages/dashboard' => 'static_pages#dashboard'
   get 'dashboard/static_pages/home' => 'static_pages#home'
   get 'dashboard/sliderimages/static_pages/home'  => 'static_pages#home'
-  get 'static_pages/home'
+ get '/static_pages/home' => 'static_pages#home'
+  get '/dashboard/static_pages/home'=> 'static_pages#home'
 
 #Question Routes
 get 'dashboard/questions/57/questions' => 'questions#index'

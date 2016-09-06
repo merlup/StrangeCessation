@@ -3,6 +3,18 @@
 <div ng-controller="QuestionCtrl">
 <form class="form-group" ng-submit=" goBack()" >
 <input type="text" class="form-control" placeholder="Enter a Question" ng-model="content"></input>
+<select type="text" class="form-control" placeholder="Choose the Answer Type" ng-model="answer_type">
+	<option value="Regular">Regular</option>
+	<option value="Dropdown">Dropdown</option>
+  	<option value="Radio">Radio</option>
+  	<option value="Radio / Dropdown">Radio / Dropdown</option>
+</select>
+<p> Example: For regular input " Regular", for DropDown "Dropdown", for Radio Buttons "Radio", for Radio Buttons with Dropdown "Radio / Dropdown" </p>
+<select type="text" class="form-control" placeholder="Choose the Amount of Choices for the answer" ng-model="choice_amount">
+<option value="1">1<img src="/uploads/user/avatar/1/admin.png"></option>
+  <option value="2">2</option>
+  <option value="2">2 with a Dropdown</option>
+</select>
 <br>
 <input type="file" ngf-select ng-model="image" >
 <br>

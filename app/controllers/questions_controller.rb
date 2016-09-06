@@ -20,6 +20,12 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
 	def create
 	@question = Question.new(question_params)
 	@question.image = params[:file]
+	if @question.answer_type.blank? 
+		@question.answer_type = "Regular"
+	end
+	if @question.choice_amount.blank? 
+		@question.choice_amount = "1"
+	end
 	    respond_to do |format|
 	      if @question.save
 	      	@question.created_at = Time.now
@@ -67,7 +73,7 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
     end
 
 	def question_params
-		params.require(:question).permit(:content, :image)
+		params.require(:question).permit(:content, :image, :answer_type, :choice_amount)
 	end
 
 
