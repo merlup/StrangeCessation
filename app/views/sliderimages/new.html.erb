@@ -1,5 +1,10 @@
-<%= form_for (@sliderimage) do |f| %>
-	<%= f.label :Choose_an_Image %>
-	<%= f.file_field :image %>
-	<%= f.submit %>
-	<% end %>
+<br>
+<br>
+<div ng-controller="SliderCtrl">
+<form class="form-group" ng-submit=" goBack()" >
+<br>
+<input type="file" ngf-select ng-model="image" >
+<br>
+<input type="submit" id="submit" ng-click="createSliderImage(image); "  >
+</form>
+</div>

@@ -14,6 +14,7 @@
 //= require angular-animate
 //= require angular-rails-templates
 //= require angularjs/rails/resource
+//= require ng-file-upload-all
 //= require jquery
 //= require jquery_ujs
 

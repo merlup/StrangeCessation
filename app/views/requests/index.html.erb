@@ -24,7 +24,7 @@
 
     <button class="btn-sm btn-primary" id="next" ng-click="nextPage(<%= @requests.count %>)">Next page</button>
 
-    <div  ng-repeat="request in requests" class="request">
+    <div  ng-repeat="request in requests">
       <div>
         <p  class="col-xs-12" ng-if="request.read == false">*NEW*</p>
          <a class="col-xs-offset-8 col-xs-2" ui-sref="dashboard.requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>

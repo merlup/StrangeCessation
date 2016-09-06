@@ -1,4 +1,4 @@
-var app = angular.module("StrangeCessation", ['ui.router', 'ngAnimate','templates' , 'rails']);
+var app = angular.module("StrangeCessation", ['ui.router', 'ngAnimate','templates' , 'rails', 'ngFileUpload' ]);
 
 app.factory('Request', ['railsResourceFactory',function(railsResourceFactory){
  return railsResourceFactory({url: '/requests', name: 'request'});
@@ -10,11 +10,7 @@ app.factory('SliderImage', ['railsResourceFactory',function(railsResourceFactory
 }]);
 
 app.factory('Question', ['railsResourceFactory',function(railsResourceFactory){
- return railsResourceFactory({url: '/questions', name: 'question'}, {
- show: { method: 'GET' },
- update: { method: 'PUT', params: {id: '@id'} },
- delete: { method: 'DELETE', params: {id: '@id'} }
- });
+ return railsResourceFactory({url: '/questions', name: 'question'});
 }]);
 
 app.factory('Users', ['railsResourceFactory',function(railsResourceFactory){
@@ -24,7 +20,7 @@ app.factory('Users', ['railsResourceFactory',function(railsResourceFactory){
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
-    .state('home', { url: '',  views: { 'main': { templateUrl: 'static_pages/home.html'}}})
+    .state('home', { url: '',  views: { 'main': { templateUrl: 'static_pages/home.html', controller: 'MainCtrl'}}})
     .state('dashboard', {  url: '/dashboard',  views: {'main': { templateUrl: 'dashboard', controller: 'RequestsCtrl'}}})
     .state('dashboard.sliderimages', { url: '/sliderimages',  views: {'panel': {templateUrl: 'sliderimages', controller: 'SliderCtrl'}}})
     .state('dashboard.sliderimages.new', { url: '/new',  views: {'sliderpanel':  {templateUrl: 'sliderimages/new.html', controller: 'SliderCtrl'}}})
@@ -42,6 +38,22 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode({ enabled: true, requireBase: false });
 
 });
+
+app.controller("MainCtrl", ['$scope', '$state', '$stateParams', 'SliderImage', function ($scope, $state, $stateParams, SliderImage) {
+
+ $scope.sliderimages = [];
+
+ $scope.imagesArray = [];
+
+     SliderImage.query({id: 'id', path: 'path', image: 'image'}).then(function (results) {
+        $scope.sliderimages = results;
+        $scope.searching = false;
+       
+    });
+}]);
+
+   
+
 
 app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  '$location', '$http', function($scope,  $state, $stateParams, Request, $http, $location) {
     
@@ -121,58 +133,104 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  
 
 }]);
 
-app.controller("SliderCtrl", ['$scope', '$state', '$stateParams', 'SliderImage', function($scope, $stateParams, $state, SliderImage,  $location) {
 
-$scope.sliderimages = SliderImage.query();
-$scope.sliderimage = SliderImage.query();
+
+app.controller("SliderCtrl", ['$scope', 'Upload', '$state', '$stateParams', 'SliderImage', 'Upload', '$location',  function($scope, Upload, $stateParams, $state, SliderImage,  Uploader, $location) {
+
+$scope.sliderimages = [];
+$scope.files = [];
+
+$scope.createSliderImage = function (file) {
+
+$scope.upload = Upload.upload({
+          url: '/sliderimages', 
+          fields: {
+            'sliderimage[image]' : file
+          },
+        file: file,
+         sendFieldsAs: 'json'
+      }).progress(function(evt) {
+         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+      }).success(function(data, status, headers, config) {
+         console.log(data);
+      });
+
+
+}
 
 SliderImage.query({id: 'id'}).then(function (results) {
     $scope.sliderimages = results;
     $scope.searching = false;
 });
 
-  $scope.createSliderImage = function () {
-        new SliderImage({
-            image: this.image 
-        }).create().then(function(SliderImage) {
-            $scope.image = '',
-            $scope.silderimages.push(SliderImage);
-           console.log(SliderImage);
-       });
-    }
-
+      $scope.deleteSliderImage = function (sliderimage) {
+        SliderImage.$delete("sliderimage/" + sliderimage.id);
+        console.log("deleted" + sliderimage.id);
+        $scope.sliderimages.splice($scope.sliderimages.indexOf(sliderimage), 1)
+        
+    };
 }]);
 
-app.controller("QuestionCtrl", ['$scope', '$state',  '$stateParams', 'Question', '$location',  function($scope, $stateParams, $state, Question, $location) {
 
-$scope.searching = true;
+
+
+
+app.controller("QuestionCtrl", ['$scope', '$state',  '$stateParams', 'Question', 'Upload', '$location',  function($scope, $state, $stateParams, Question, Upload, $location) {
+
+$scope.createQuestion = function (file) {
+
+$scope.upload = Upload.upload({
+          url: '/questions', 
+          fields: {
+            'question[content]' : this.content,
+            'question[image]' : file
+          },
+        file: file,
+         sendFieldsAs: 'json'
+      }).progress(function(evt) {
+         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+      }).success(function(data, status, headers, config) {
+         console.log(data);
+      });
+
+
+}
+
+
+
 
 $scope.questions = [];
 
-    Question.query({ id: 'id' }).then(function (results) {
+
+
+var nav_menu = document.getElementById("nav_menu");
+
+    Question.query().then(function (results) {
         $scope.questions = results;
-        $scope.searching = false;
+      
     });
 
-     
+     if($state.$current == "dashboard.questions.new") {
+        nav_menu.style.visibility = "hidden";
+     } 
+
+   $scope.goBack = function() {
+    
+    
+    Question.query().then(function (results) {
+        $scope.questions = results;
+      
+    });
+    $state.go("dashboard.questions");
+    nav_menu.style.visibility = "visible";
+   }
+
     $scope.deleteQuestion = function (question) {
         Question.$delete("questions/" + question.id);
         console.log("deleted" + question.id);
         $scope.questions.splice($scope.questions.indexOf(question), 1)
         
     };
-
-    $scope.createQuestion = function () {
-        new Question({
-            content: this.content,
-            image: this.image 
-        }).create().then(function(Question) {
-            $scope.content = '',
-            $scope.questions.push(Question);
-           console.log(Question);
-       });
-    }
-
 
 }]);
 

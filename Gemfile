@@ -28,6 +28,7 @@ gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
 gem 'sprockets', '2.12.3'
 gem 'rails-angular-material', '~> 0.8.3.2'
+gem 'angularjs-file-upload-rails', '~> 2.2.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -1,12 +1,10 @@
 <div ng-controller="SliderCtrl">
-<div class=" full" ui-view="sliderpanel"> </div>
+  <a ui-sref="dashboard.sliderimages.new"> Create Slider Image </a>
+<div ui-view="sliderpanel"> </div>
 <div ng-repeat="sliderimage in sliderimages" >
-
-<{{sliderimage.image}}
+<img src="{{sliderimage.image.url}}">
+<a ng-click="deleteSliderImage( sliderimage)" confirm="Are you sure?">Delete</a>
 </div>
-          </div>
-     
+</div>
 
-
-<a ui-sref="dashboard.sliderimages.new"> Create Slider Image </a>
  

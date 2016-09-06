@@ -1,5 +1,11 @@
-<form class="form-group" ng-submit="createQuestion()" >
+<br>
+<br>
+<div ng-controller="QuestionCtrl">
+<form class="form-group" ng-submit=" goBack()" >
 <input type="text" class="form-control" placeholder="Enter a Question" ng-model="content"></input>
-<input type="file" class="form-control" placeholder="Choose an Example Image" ng-model="image"></input>
-<input type="submit" id="submit" value="Submit" >
+<br>
+<input type="file" ngf-select ng-model="image" >
+<br>
+<input type="submit" id="submit" ng-click="createQuestion(image); "  >
 </form>
+</div>

@@ -19,7 +19,7 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
 
 	def create
 	@question = Question.new(question_params)
-
+	@question.image = params[:file]
 	    respond_to do |format|
 	      if @question.save
 	      	@question.created_at = Time.now

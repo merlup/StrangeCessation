@@ -14,9 +14,9 @@ before_action :set_image, only: [:show, :edit, :update, :destroy]
 
 	def create
 	@sliderimage = Sliderimage.new(sliderimage_params)
-
+	@sliderimage.image = params[:file]
 	    respond_to do |format|
-	      if @sliderimage.save
+	      if @sliderimage.save 
 	      	@sliderimage.created_at = Time.now
 	        format.html { redirect_to sliderimages_path, notice: 'Sliderimage was successfully created.' }
 	        format.json { render :show, status: :created, location: @sliderimage }

@@ -34,6 +34,8 @@ class RequestsController < ApplicationController
 
 
   def edit
+    @request = Request.find(params[:id])
+    @questions = Question.all
   end
 
 
