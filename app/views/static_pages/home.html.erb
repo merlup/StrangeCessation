@@ -7,7 +7,7 @@
 
 <% @sliderimages.each do |sliderimage| %>
 	<script type="text/javascript">
-			imagesArray.push({	id: '<%= sliderimage.id %>',path: '<%= image_tag sliderimage.image.slider %>'});
+			imagesArray.push({	id: '<%= sliderimage.id %>',path: '<%= image_tag sliderimage.image.slider, class: "img-responsive" %>'});
 	</script>
 <% end %> 
 
@@ -20,18 +20,18 @@
 			}
 		}	
 	</script>
-	<div class="col-lg-1"></div>
-<div class="leftsection col-lg-2">
+	
+<div class="leftsection col-md-3 col-lg-2 col-lg-offset-1 col-xs-offset-0">
 	<div class="row">
-		<div class="logo img-responsive">
+		<div class="logo col-xs-offset-2 col-md-offset-0 col-md-12 img-responsive">
 			<%= image_tag "LOGO.jpg", class: "limg" %>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="contact">
+		<div class="contact col-xs-offset-2 col-md-offset-0 col-md-12 ">
 			 <div>
-			 	<span><%= image_tag "location.png", class: "icon" %></span><span>400 BRANNAN ST. SUITE 204  </span>
+			 	<span><%= image_tag "location.png", class: "icon img-responsive" %></span><span>400 BRANNAN ST. SUITE 204  </span>
 			  <p> SAN FRANCISCO, CA 94107</p> 
 			  </div>
 			 <div><span><%= image_tag "phone.png", class: "icon" %>405 - 503 - 1678 </span></div>
@@ -40,9 +40,12 @@
 	</div>
 
 	<div class="row">
-		<div class="services">
-			<h4 style="text-align:center"> Large Format Printing Services </h4>
-			<hr>
+		<div class="services col-xs-offset-2 col-md-12 col-md-offset-0">
+			<h4 > Large Format Printing Services </h4>
+			<hr >
+
+			
+			<br>
 			<span> <%= image_tag "check.png", class: "icon2" %>  OVERSIZED INKJET PRINTS </span><br>
 			<span><%= image_tag "check.png", class: "icon2" %>  PHOTOGRAPHY </span><br>
 			<span><%= image_tag "check.png", class: "icon2" %>  ART SERIES </span><br>
@@ -55,25 +58,28 @@
 		</div>
 	</div>
 </div>
-<div class="mainsection col-lg-6">
-	<div id='mainImage' class="col-lg-9 col-lg-offset-1">
-		<div id="selectedImage">
-		<%= image_tag 'hweight2.jpg', class: "mimages" %>
+
+<div class="mainsection col-xs-12 col-md-6 col-lg-6">
+	<div id='mainImage' class=" col-xs-12  col-xs-offset-1 col-md-12 col-md-offset-0 col-lg-9">
+		<div id="selectedImage" >
+		<%= image_tag 'hweight2.jpg' %>
 		</div>
 	</div>
-	<div class='thumbcolumn col-lg-2' >
+	<div class='thumbcolumn col-md-12 col-lg-3' >
+	<ul class="col-md-12" >
 	<% @sliderimages.each do |thumbnail| %>
 		<a  onclick="changeImage(<%= thumbnail.id %>)">
-			<%= image_tag  thumbnail.image.thumb%>
+			<li  ><%= image_tag  thumbnail.image.thumb, class: "img-responsive" %></li>
 		</a>
 	<% end %>
+ 	</ul>
 	</div>
 </div> 
 
-<div class="rightsection col-lg-2">
+<div class="rightsection col-xs-12 col-md-2 col-lg-3">
 	<div class="row">
 
-		<div class="right1 btn" data-toggle="modal" data-target="#priceSheet">
+		<div class="right1 col-xs-offset-3 col-md-offset-0 btn" data-toggle="modal" data-target="#priceSheet">
 			<%= image_tag "pricesheet.png", class: "rightbuttons" %>
 		</div>
 		<div class="modal fade" id="priceSheet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -85,7 +91,7 @@
 	          		</div>
 	          		<div class="qsect2 ">
 	          		</div>
-	          		<div class="modal-body" style="height:100%">
+	          		<div class="modal-body" style="max-height:100%">
 						<%= render partial: 'layouts/pricesheet' %>
 					</div>
 				</div>
@@ -94,7 +100,7 @@
 	</div>
 	
 	<div class="row">
-		<div type="button" class="right2 btn" data-toggle="modal" data-target="#myModal">
+		<div type="button" class=" col-xs-offset-3  col-md-offset-0 right2 btn" data-toggle="modal" data-target="#myModal">
 		 <%= image_tag "requestaquote.png", class: "rightbuttons" %>
 		</div>
 
@@ -127,8 +133,11 @@
 				<li><a href="https://www.instagram.com/strange_cessation_/"><%= image_tag "instagram.png", class: "icon" %></a></li>
 			</ul>
 		</div>
+
 	</div>
 </div>
+
+
 
 
 

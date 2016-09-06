@@ -17,6 +17,10 @@ app.factory('Users', ['railsResourceFactory',function(railsResourceFactory){
  return railsResourceFactory({url: '/users', name: 'user'});
 }]);
 
+app.factory('PriceSheetImage', ['railsResourceFactory',function(railsResourceFactory){
+ return railsResourceFactory({url: '/price_sheet_images', name: 'price_sheet_image'});
+}]);
+
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
@@ -24,6 +28,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('dashboard', {  url: '/dashboard',  views: {'main': { templateUrl: 'dashboard', controller: 'RequestsCtrl'}}})
     .state('dashboard.sliderimages', { url: '/sliderimages',  views: {'panel': {templateUrl: 'sliderimages', controller: 'SliderCtrl'}}})
     .state('dashboard.sliderimages.new', { url: '/new',  views: {'sliderpanel':  {templateUrl: 'sliderimages/new.html', controller: 'SliderCtrl'}}})
+    .state('dashboard.pricesheetimages', {  url: '/price_sheet_images',  views: {'panel': { templateUrl: 'price_sheet_images', controller: 'PriceSheetCtrl'}}})
+    .state('dashboard.pricesheetimages.new', { url: '/new',  views: {'pricesheetpanel': { templateUrl: 'price_sheet_images/new', controller: 'PriceSheetCtrl'}}})
     .state('dashboard.questions', {  url: '/questions',  views: {'panel': { templateUrl: 'questions', controller: 'QuestionCtrl'}}})
     .state('dashboard.questions.new', { url: '/new',  views: {'questionpanel': { templateUrl: 'questions/new', controller: 'QuestionCtrl'}}})
     .state('dashboard.questions.edit',  { url: '/:id/edit', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}/edit`;}, controller: 'QuestionCtrl'}}})
@@ -52,7 +58,57 @@ app.controller("MainCtrl", ['$scope', '$state', '$stateParams', 'SliderImage', f
     });
 }]);
 
-   
+  
+app.controller("PriceSheetCtrl", ['$scope', '$state',  '$stateParams', 'PriceSheetImage', 'Upload', '$location',  function($scope, $state, $stateParams, PriceSheetImage, Upload, $location) {
+
+$scope.createPriceSheetImage = function (file) {
+console.log("We Did it");
+$scope.upload = Upload.upload({
+          url: '/price_sheet_images', 
+          fields: {
+            'price_sheet_image[image]' : file
+          },
+        file: file,
+         sendFieldsAs: 'json'
+      }).progress(function(evt) {
+         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+      }).success(function(data, status, headers, config) {
+         console.log(data);
+      });
+}
+
+$scope.price_sheet_images = [];
+
+var nav_menu = document.getElementById("nav_menu");
+
+    PriceSheetImage.query().then(function (results) {
+        $scope.price_sheet_images = results;
+      
+    });
+
+     if($state.$current == "dashboard.pricesheetimages.new") {
+        nav_menu.style.visibility = "hidden";
+     } 
+
+   $scope.goBack = function() {
+    
+    
+    PriceSheetImage.query().then(function (results) {
+        $scope.price_sheet_images = results;
+      
+    });
+    $state.go("dashboard.pricesheetimages");
+    nav_menu.style.visibility = "visible";
+   }
+
+    $scope.deletePriceSheetImage = function (price_sheet_image) {
+        PriceSheetImage.$delete("price_sheet_images/" + price_sheet_image.id);
+        console.log("deleted" + price_sheet_image.id);
+        $scope.price_sheet_images.splice($scope.price_sheet_images.indexOf(price_sheet_image), 1)
+        
+    };
+
+}]);
 
 
 app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  '$location', '$http', function($scope,  $state, $stateParams, Request, $http, $location) {
@@ -135,7 +191,7 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  
 
 
 
-app.controller("SliderCtrl", ['$scope', 'Upload', '$state', '$stateParams', 'SliderImage', 'Upload', '$location',  function($scope, Upload, $stateParams, $state, SliderImage,  Uploader, $location) {
+app.controller("SliderCtrl", ['$scope', 'Upload', '$state', '$stateParams', 'SliderImage', 'Upload', '$location',  function($scope, Upload, $stateParams, $state, SliderImage, $location) {
 
 $scope.sliderimages = [];
 $scope.files = [];

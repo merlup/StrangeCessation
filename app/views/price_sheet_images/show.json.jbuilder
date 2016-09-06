@@ -1,0 +1,1 @@
+json.partial! "price_sheet_images/price_sheet_image", price_sheet_image: @price_sheet_image

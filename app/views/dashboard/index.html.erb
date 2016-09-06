@@ -15,10 +15,10 @@
 <% if logged_in? %>
 <div ng-controller="RequestsCtrl">
   <div class="requestpage" >
-    <div class="userleftpanel col-xs-2 col-sm-3 col-sm-offset-1">
+    <div class="userleftpanel col-xs-2 col-sm-2 col-sm-offset-1">
       <div class="row">
       
-        <h2> Welcome <%= current_user.username %> </h2>
+        <h4> Welcome <%= current_user.username %> </h4>
       </div>
       <div class="row">
         <%= image_tag current_user.avatar %>
@@ -33,14 +33,12 @@
   </div>
 </div>
 
-<div id='dashboard_panel' class="requests col-md-5"  >
-<div id="full" ui-view="requestseditpanel"></div>
-  <a class="col-lg-offset-1" ui-sref="dashboard.requests">Requests</a>
-  <a class="col-lg-offset-1" ui-sref="dashboard.sliderimages">+ Add Slider Images</a><br>
-  <a class="col-lg-offset-1" ui-sref="dashboard.questions">+ Add Questions to Request Form</a><br>
-  <div class=" full" ui-view="panel" > </div>
-  <div id="full" ui-view="requestseditpanel"></div>
-
+<div id='dashboard_panel' class="requests col-md-8"  >
+  <a class="" ui-sref="dashboard.requests">Requests</a>
+  <a class="col-xs-offset-1" ui-sref="dashboard.sliderimages">+ Add Slider Images</a>
+  <a class="col-xs-offset-1" ui-sref="dashboard.questions">+ Add Questions to Request Form</a>
+  <a class="col-xs-offset-1" ui-sref="dashboard.pricesheetimages">+ Add Images to PriceSheet</a>
+  <div class=" full" ui-view="panel" style="margin-top:20px;"> </div>
 </div>
 
 <% end %>

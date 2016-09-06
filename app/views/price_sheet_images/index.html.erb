@@ -1,0 +1,14 @@
+<div ng-controller="PriceSheetCtrl">
+
+  <div ui-view="pricesheetpanel"> </div>
+<div id='nav_menu'>
+    <a ui-sref="dashboard.pricesheetimages.new"> Create PriceSheet Image </a>
+
+  <div ng-repeat="price_sheet_image in price_sheet_images" >
+  <img src="{{price_sheet_image.image.url}}">
+  <a ng-click="deletePriceSheetImage( price_sheet_image)" confirm="Are you sure?">Delete</a>
+  </div>
+</div>
+</div>
+
+ 
