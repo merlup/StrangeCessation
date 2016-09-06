@@ -7,7 +7,7 @@
 
 <% @sliderimages.each do |sliderimage| %>
 	<script type="text/javascript">
-			imagesArray.push({	id: '<%= sliderimage.id %>',path: '<%= image_tag sliderimage.image, class: "mimages" %>'});
+			imagesArray.push({	id: '<%= sliderimage.id %>',path: '<%= image_tag sliderimage.image.slider %>'});
 	</script>
 <% end %> 
 
@@ -56,20 +56,19 @@
 	</div>
 </div>
 <div class="mainsection col-lg-6">
-
-		<div id='mainImage' class="col-lg-9">
-			<div id="selectedImage">
-			<%= image_tag 'hweight2.jpg', class: "mimages" %>
-			</div>
+	<div id='mainImage' class="col-lg-9 col-lg-offset-1">
+		<div id="selectedImage">
+		<%= image_tag 'hweight2.jpg', class: "mimages" %>
 		</div>
-		<div class='thumbcolumn'>
-		<% @sliderimages.each do |thumbnail| %>
-			<a  onclick="changeImage(<%= thumbnail.id %>)">
-				<%= image_tag  thumbnail.image, class: "thumbs" %>
-			</a>
-		<% end %>
-		</div>
-	</div> 
+	</div>
+	<div class='thumbcolumn col-lg-2' >
+	<% @sliderimages.each do |thumbnail| %>
+		<a  onclick="changeImage(<%= thumbnail.id %>)">
+			<%= image_tag  thumbnail.image.thumb%>
+		</a>
+	<% end %>
+	</div>
+</div> 
 
 <div class="rightsection col-lg-2">
 	<div class="row">

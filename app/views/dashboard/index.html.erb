@@ -34,10 +34,12 @@
 </div>
 
 <div id='dashboard_panel' class="requests col-md-5"  >
+<div id="full" ui-view="requestseditpanel"></div>
   <a class="col-lg-offset-1" ui-sref="dashboard.requests">Requests</a>
   <a class="col-lg-offset-1" ui-sref="dashboard.sliderimages">+ Add Slider Images</a><br>
   <a class="col-lg-offset-1" ui-sref="dashboard.questions">+ Add Questions to Request Form</a><br>
   <div class=" full" ui-view="panel" > </div>
+  <div id="full" ui-view="requestseditpanel"></div>
 
 </div>
 

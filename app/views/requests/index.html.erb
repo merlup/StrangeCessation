@@ -6,6 +6,7 @@
   <div class="requestpage" >
     <div id='requests' class="requests "  >
    <div id="full" ui-view="requestspanel"></div>
+   <div id="full" ui-view="requestseditpanel"></div>
    <div id="nav_menu">
     <div class="requesticons col-xs-12" >
       <div class="openrequest col-xs-2">
@@ -28,6 +29,7 @@
       <div>
         <p  class="col-xs-12" ng-if="request.read == false">*NEW*</p>
          <a class="col-xs-offset-8 col-xs-2" ui-sref="dashboard.requests.detail({id: request.id})" ng-click="showfullreqest()" ng-init="fullrequest = false">View</a>
+
           <a class="col-xs-offset-8 col-xs-2"  ng-click="deleteRequest({id: request.id})" ng-init="fullrequest = false" confirm="Are you sure?">Delete</a>
         <p class=" col-xs-12">Request #{{request.id}}</p>
         

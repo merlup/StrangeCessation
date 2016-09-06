@@ -12,24 +12,12 @@ regions =(['USA','Other'])
 addresses = (['1234 4th st', '1234 5th st','2352 6th st', '56743 9th st'])
 emails = (['email1@email.com', 'email2@email.com','email3@email.com','email4@email.com'])
 requestimages = (['image1.png', 'image2.png', 'image3.png'])
-q1 =(['answer1', 'answer2', 'answer3'])
-q2 =(['answer1', 'answer2', 'answer3'])
-q3 =(['answer1', 'answer2', 'answer3'])
-q4 =(['answer1', 'answer2', 'answer3'])
-q5 =(['answer1', 'answer2', 'answer3'])
-q6 =(['answer1', 'answer2', 'answer3'])
-q7 =(['answer1', 'answer2', 'answer3'])
-q8 =(['answer1', 'answer2', 'answer3'])
-q9 =(['answer1', 'answer2', 'answer3'])
-q10 =(['answer1', 'answer2', 'answer3'])
-q11 =(['answer1', 'answer2', 'answer3'])
-q12 =(['answer1', 'answer2', 'answer3'])
-q13 =(['answer1', 'answer2', 'answer3'])
-q14 =(['answer1', 'answer2', 'answer3'])
 usernames = (['administrator', 'guest'])
 useremails = (['admin@email.com', 'guest@email.com'])
 userpasswords = (['secret'])
 useravatar = (['admin.png', 'guest.png'])
+questions = (['Sup Bruh , How you been?' , "WOuld you Hit?"])
+answers = (['Great', "I would definantly"])
 
 
 User.create(
@@ -46,6 +34,18 @@ User.create(
 	avatar: open('app/assets/images/guest.png')
 )
 
+Question.create(
+	content: questions.first,
+	image: open('app/assets/images/image1.png')
+)
+
+Question.create(
+	content: questions.second,
+	image: open('app/assets/images/image1.png')
+)
+
+
+
 
 
 Request.create(
@@ -55,22 +55,9 @@ Request.create(
 	city: cities.first, 
 	state: states.first, 
 	region: regions.first,
-	#q1: q1.first,
-	#q2: q2.first,
-	#q3: q3.first,
-	#q4: q4.first,
-	#q5: q5.first,
-	#q6: q6.first,
-	#q7: q7.first,
-	#q8: q8.first,
-	#q9: q9.first,
-	#q10: q10.first,
-	#q11: q11.first,
-	#q12: q12.first,
-	#q13: q13.first,
-	#q14: q14.first,
 	image: open('app/assets/images/image1.png'),
-	read: 'false'
+	read: 'false',
+	answers_attributes: ("1", questions.first, answers.first)
 )
 Request.create(
 	name: 'Jane',
@@ -79,22 +66,9 @@ Request.create(
 	city: cities.second, 
 	state: states.second, 
 	region: regions.first,
-	#q1: q1.first,
-	#q2: q2.first,
-	#q3: q3.first,
-	#q4: q4.first,
-	#q5: q5.first,
-	#q6: q6.first,
-	#q7: q7.first,
-	#q8: q8.first,
-	#q9: q9.first,
-	#q10: q10.first,
-	#q11: q11.first,
-	#q12: q12.first,
-	#q13: q13.first,
-	#q14: q14.first,
 	image: open('app/assets/images/image2.png'),
-	read: 'false'
+	read: 'false',
+	answers_attributes: ("2", questions.second, answers.second)
 )
 Request.create(
 	name: 'Mark',
@@ -103,22 +77,9 @@ Request.create(
 	city: cities.third, 
 	state: states.third, 
 	region: regions.first,
-	#q1: q1.first,
-	#q2: q2.first,
-	#q3: q3.first,
-	#q4: q4.first,
-	#q5: q5.first,
-	#q6: q6.first,
-	#q7: q7.first,
-	#q8: q8.first,
-	#q9: q9.first,
-	#q10: q10.first,
-	#q11: q11.first,
-	#q12: q12.first,
-	#q13: q13.first,
-	#q14: q14.first,
 	image: open('app/assets/images/image3.png'),
-	read: 'false'
+	read: 'false',
+	answers_attributes: ("3", questions.first, answers.first)
 )
 
 

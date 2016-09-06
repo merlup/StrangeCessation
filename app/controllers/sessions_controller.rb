@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:session][:username])
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to '/requests'
+      redirect_to '/dashboard'
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'static_pages/home'

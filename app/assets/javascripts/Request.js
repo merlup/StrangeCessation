@@ -29,7 +29,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('dashboard.questions.edit',  { url: '/:id/edit', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}/edit`;}, controller: 'QuestionCtrl'}}})
     .state('dashboard.questions.show',  { url: '/:id', views: {'questionpanel': { templateUrl: function($stateParams) {return `questions/${$stateParams.id}`;}, controller: 'QuestionCtrl'}}})
     .state('dashboard.requests', { url: '/requests',  views: {'panel': { templateUrl: 'requests', controller: 'RequestsCtrl'}}})
-    .state('dashboard.requests.detail',  { url: '/:id', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}`;}, controller: 'RequestsCtrl'}}})
+    .state('dashboard.requests.detail',  { url: '/:id', views: {'requestspanel': { templateUrl: function($stateParams) {return `requests/${$stateParams.id}`;}, controller: 'RequestsCtrl'}}})
     .state('dashboard.requests.detail.pdf', { url: '.pdf', views: { 'requestspanel': {  templateUrl: function($stateParams) {return `/requests/${$stateParams.id}.pdf`;}, controller: 'RequestCtrl'}}})
     .state('dashboard.requests.detail.edit',  { url: '/edit', views: {'requestspanel': { templateUrl: function($stateParams) {return `/requests/${$stateParams.id}/edit`;}, controller: 'RequestCtrl'}}})
     .state('users', { url: '/users', templateUrl: 'users.html', controller: 'UsersCtrl'})
@@ -57,7 +57,7 @@ app.controller("MainCtrl", ['$scope', '$state', '$stateParams', 'SliderImage', f
 
 app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  '$location', '$http', function($scope,  $state, $stateParams, Request, $http, $location) {
     
-    $scope.searching = true;
+
     $scope.requests = [];
     $scope.unread_requests = [];
     $scope.show_parent_panel = true;
@@ -68,7 +68,7 @@ app.controller("RequestsCtrl", ['$scope', '$state', '$stateParams', 'Request',  
 
     Request.query({ id: 'id' }).then(function (results) {
         $scope.requests = results;
-        $scope.searching = false;
+   
     });
 
      Request.query({ read: false }).then(function (results) {
@@ -196,12 +196,7 @@ $scope.upload = Upload.upload({
 
 }
 
-
-
-
 $scope.questions = [];
-
-
 
 var nav_menu = document.getElementById("nav_menu");
 
