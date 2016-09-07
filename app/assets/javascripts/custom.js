@@ -8,3 +8,5 @@ function switchFields() {
 
 }
 
+var choices_amount_value = $("#choice").val()
+

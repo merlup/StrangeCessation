@@ -4,6 +4,7 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
 	@skip_header = true
     @skip_footer = true
 		@question = Question.new
+		@choices = @question.choices.build
 	end
 
 	def index 
@@ -19,6 +20,7 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
 
 	def create
 	@question = Question.new(question_params)
+	@question.choices.build
 	@question.image = params[:file]
 	if @question.answer_type.blank? 
 		@question.answer_type = "Regular"
@@ -73,7 +75,7 @@ before_action :set_question, only: [:show, :edit, :update, :destroy]
     end
 
 	def question_params
-		params.require(:question).permit(:content, :image, :answer_type, :choice_amount)
+		params.require(:question).permit(:content, :image, :answer_type, :choice_amount, :bodies ,:choices , choices_attributes:[:id, :body])
 	end
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906194827) do
+ActiveRecord::Schema.define(version: 20160907061608) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "question"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20160906194827) do
   end
 
   add_index "answers", ["request_id"], name: "index_answers_on_request_id"
+
+  create_table "choices", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "choices", ["question_id"], name: "index_choices_on_question_id"
 
   create_table "price_sheet_images", force: :cascade do |t|
     t.string   "image"
@@ -36,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160906194827) do
     t.string   "images"
     t.string   "image"
     t.string   "answer_type"
-    t.string   "choice_amount"
+    t.integer  "choice_amount"
   end
 
   create_table "read_marks", force: :cascade do |t|

@@ -31,11 +31,14 @@
 //= require angular-aria
 
 
-//= require angular-pdf
-//= require angular-pdf.min
-
 //= require custom
 //= require AngularApp
+//= require app_services
+//= require MainCtrl
+//= require PriceSheetCtrl
+//= require QuestionCtrl
+//= require RequestCtrl
+//= require SliderCtrl
 //= require home
 //= require_tree ./templates
 

@@ -2,22 +2,40 @@
 <br>
 <div ng-controller="QuestionCtrl">
 <form class="form-group" ng-submit=" goBack()" >
-<input type="text" class="form-control" placeholder="Enter a Question" ng-model="content"></input>
+<div id="selections_for_dropdown">
+
+</div>
+
 <select type="text" class="form-control" placeholder="Choose the Answer Type" ng-model="answer_type">
 	<option value="Regular">Regular</option>
 	<option value="Dropdown">Dropdown</option>
-  	<option value="Radio">Radio</option>
-  	<option value="Radio / Dropdown">Radio / Dropdown</option>
+  <option value="Radio">Radio</option>
+  <option value="Radio / Dropdown">Radio / Dropdown</option>
 </select>
+<div  ng-show="answer_type == 'Dropdown' || answer_type == 'Radio'">
+  <input type="text" class="form-control" placeholder="Choose the Amount of Choices for the answer" ng-model="choice_amount" id="choice_amount"></input>
+</div>
+<div ng-show="answer_type == 'Dropdown'">
+	<p> Choose your Dropdown Selections </p>
+  <div id="selections_for_dropdown">
+   <input type="text" class="form-control" ng-model="choice0"></input>
+       <input type="text" class="form-control" ng-model="choice1"></input>
+       <input type="text" class="form-control" ng-model="choice2"></input> 
+  </div> 
+</div>
+    <div  ng-show="answer_type == 'Radio'">
+  	 <p> Choose your Radio Selections </p>	
+    
+     </div>
+     <div  ng-show="answer_type == 'Radio / Dropdown'">
+  	<p> Choose your Radio Button Selections and your Dropdown Selctions </p>
+
+    </div>
 <p> Example: For regular input " Regular", for DropDown "Dropdown", for Radio Buttons "Radio", for Radio Buttons with Dropdown "Radio / Dropdown" </p>
-<select type="text" class="form-control" placeholder="Choose the Amount of Choices for the answer" ng-model="choice_amount">
-<option value="1">1<img src="/uploads/user/avatar/1/admin.png"></option>
-  <option value="2">2</option>
-  <option value="2">2 with a Dropdown</option>
-</select>
+
 <br>
 <input type="file" ngf-select ng-model="image" >
 <br>
 <input type="submit" id="submit" ng-click="createQuestion(image); "  >
 </form>
-</div>
+

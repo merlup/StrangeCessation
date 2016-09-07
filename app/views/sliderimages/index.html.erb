@@ -4,10 +4,9 @@
 	  <a ui-sref="dashboard.sliderimages.new"> Create Slider Image </a>
 	
 	<div ng-repeat="sliderimage in sliderimages" >
-	<img src="{{sliderimage.image.url}}">
+	<img ng-src="{{sliderimage.image.url}}">
 	<a ng-click="deleteSliderImage( sliderimage)" confirm="Are you sure?">Delete</a>
 	</div>
 </div>
 </div>
 
- <%= javascript_include_tag "AngularApp" %>

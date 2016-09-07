@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-   root 'static_pages#home'
+  get 'choice/new'
+
+  root 'static_pages#home'
 
 #Request Routes
   get 'dashboard/requests' => 'requests#index'
@@ -29,11 +31,14 @@ delete '/dashboard/price_sheet_images/:id' => 'price_sheet_images#destroy'
   get 'dashboard/sliderimages/new' => 'sliderimages#new'
   delete '/dashboard/sliderimage/:id' => 'sliderimages#destroy'
    post 'sliderimages',  to: 'sliderimages#create'
+
+
 #Dashboard Routes
   get 'dashboard/sliderimages/dashboard' => 'dashboard#index'
   get 'dashboard/dashboard' => 'dashboard#index'
   get 'dashboard/questions/57/dashboard' => 'dashboard#index'
   get 'dashboard/price_sheet_images/dashboard' => 'dashboard#index'
+  get '/dashboard/requests/dashboard' => 'dashboard#index'
 
 #Static Routes
   get 'dashboard/questions/static_pages/home' => 'static_pages#home'
@@ -42,6 +47,7 @@ delete '/dashboard/price_sheet_images/:id' => 'price_sheet_images#destroy'
   get 'dashboard/sliderimages/static_pages/home'  => 'static_pages#home'
  get '/static_pages/home' => 'static_pages#home'
   get '/dashboard/static_pages/home'=> 'static_pages#home'
+  get '/dashboard/requests/static_pages/home' => 'static_pages#home'
 
 #Question Routes
 get 'dashboard/questions/57/questions' => 'questions#index'

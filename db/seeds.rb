@@ -45,9 +45,6 @@ Question.create(
 )
 
 
-
-
-
 Request.create(
 	name: 'John', 
 	email: emails.first,
@@ -57,7 +54,7 @@ Request.create(
 	region: regions.first,
 	image: open('app/assets/images/image1.png'),
 	read: 'false',
-	answers_attributes: ("1", questions.first, answers.first)
+
 )
 Request.create(
 	name: 'Jane',
@@ -68,7 +65,7 @@ Request.create(
 	region: regions.first,
 	image: open('app/assets/images/image2.png'),
 	read: 'false',
-	answers_attributes: ("2", questions.second, answers.second)
+	
 )
 Request.create(
 	name: 'Mark',
@@ -79,7 +76,7 @@ Request.create(
 	region: regions.first,
 	image: open('app/assets/images/image3.png'),
 	read: 'false',
-	answers_attributes: ("3", questions.first, answers.first)
+
 )
 
 
