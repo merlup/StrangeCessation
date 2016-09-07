@@ -1,10 +1,11 @@
 
 app.controller("QuestionCtrl", ['$scope', '$state',  '$compile', '$stateParams', 'Question', 'Choices', 'Upload', '$location',  function($scope, $state,  $compile, $stateParams, Question, Choices, Upload, $location) {
+ 
+
+ $scope.input_ids = [];
 
   if($state.$current == "dashboard.questions.new" ) {
     $scope.answer_type = this.answer_type;
-
-   
 
      $scope.$watch('choice_amount', function() {
         if($scope.answer_type  == "Dropdown") {
@@ -12,8 +13,9 @@ app.controller("QuestionCtrl", ['$scope', '$state',  '$compile', '$stateParams',
             var mark_up = [];
                  for(var i = 0; i <= $scope.choice_amount - 1 ; i++) {
                   var model = `choice${[i]}`
-                  var innerHT = `<input type="text" class="form-control" ng-model="${model}" ></input>`
+                  var innerHT = `<input type="text" class="form-control" ng-model="${model}" id="${model}" ></input>`
                   mark_up.push(innerHT);
+                  $scope.input_ids.push(model);
                 }
                 console.log(model + " " + mark_up);
                 mark_up.forEach(function(x) {
@@ -28,8 +30,9 @@ app.controller("QuestionCtrl", ['$scope', '$state',  '$compile', '$stateParams',
             var mark_up = [];
                  for(var i = 0; i <= $scope.choice_amount - 1 ; i++) {
                   var model = `choice${[i]}`
-                  var innerHT = `<input type="text" class="form-control" ng-model="${model}" ></input>`
+                  var innerHT = `<input type="text" class="form-control" ng-model="${model}" id="${model}" ></input>`
                   mark_up.push(innerHT);
+                  $scope.input_ids.push(model);
                 }
                 console.log(model + " " + mark_up);
                 mark_up.forEach(function(x) {
@@ -40,15 +43,25 @@ app.controller("QuestionCtrl", ['$scope', '$state',  '$compile', '$stateParams',
 
   
   }
-            
-  
-
-
-
+         
+        
+$scope.choice_answers = [];
+$scope.choices = [];
 $scope.createQuestion = function (file) {
 
+for(var i = 0; i < $scope.input_ids.length; i++) { 
+  console.log($scope.input_ids[i]);
+  var find_me = $scope.input_ids[i];
+console.log("Find Me= " + find_me + `${find_me}`);
+    var input_answer = document.getElementById(`${find_me}`).value;
+    $scope.choice_answers.push(input_answer);
+  }
 
-$scope.choices = [ {'[body]' : this.choice0 } ,{ '[body]' : this.choice1 }, {'[body]' : this.choice2} ]
+  for(var i = 0; i < $scope.choice_answers.length; i++) { 
+    console.log( $scope.choice_answers[i] )
+    $scope.choices.push({'[body]' : $scope.choice_answers[i]}) 
+  }
+
 
 $scope.upload = Upload.upload({
           url: '/questions', 
