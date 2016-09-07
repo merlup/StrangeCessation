@@ -61,7 +61,9 @@
                 <% elsif question.answer_type == "Dropdown" %>
                     <%= ff.collection_select( :answer, question.choices[0..question.choices.length-2] , :id, :body, {:selected => question.choices[0]}) %>
                 <% elsif question.answer_type == "Radio" %>
-                 <%= ff.collection_select( :answer, question.choices[0..question.choices.length-2], :id, :body, {:selected => question.choices[0]}) %>
+                  <% @questions.each do |question| %>
+                 <%= ff.radio_button( :answer, :body) %>
+                 <% end %>
                 <% else %>
                  <%= ff.text_field :answer, class: 'form-control' %>
                 <% end %>

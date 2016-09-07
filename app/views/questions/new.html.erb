@@ -3,7 +3,7 @@
 <div ng-controller="QuestionCtrl">
 <form class="form-group" ng-submit=" goBack()" >
 <input type="text" class="form-control" placeholder="Enter a Question" ng-model="content"></input>
-<select type="text" class="form-control" placeholder="Choose the Answer Type" ng-model="answer_type">
+<select type="text" class="form-control" placeholder="Choose the Answer Type" ng-model="answer_type" id="answer_type">
 	<option value="Regular">Regular</option>
 	<option value="Dropdown">Dropdown</option>
   <option value="Radio">Radio</option>
@@ -20,7 +20,9 @@
 </div>
     <div  ng-show="answer_type == 'Radio'">
   	 <p> Choose your Radio Selections </p>	
-    
+     <div id="selections_for_radio">
+
+  </div> 
      </div>
      <div  ng-show="answer_type == 'Radio / Dropdown'">
   	<p> Choose your Radio Button Selections and your Dropdown Selctions </p>

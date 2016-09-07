@@ -2,8 +2,13 @@
 app.controller("QuestionCtrl", ['$scope', '$state',  '$compile', '$stateParams', 'Question', 'Choices', 'Upload', '$location',  function($scope, $state,  $compile, $stateParams, Question, Choices, Upload, $location) {
 
   if($state.$current == "dashboard.questions.new" ) {
-      $scope.$watch('choice_amount', function() {
-            document.getElementById('selections_for_dropdown').innerHTML = ""
+    $scope.answer_type = this.answer_type;
+
+   
+
+     $scope.$watch('choice_amount', function() {
+        if($scope.answer_type  == "Dropdown") {
+          document.getElementById('selections_for_dropdown').innerHTML = "";
             var mark_up = [];
                  for(var i = 0; i <= $scope.choice_amount - 1 ; i++) {
                   var model = `choice${[i]}`
@@ -13,10 +18,30 @@ app.controller("QuestionCtrl", ['$scope', '$state',  '$compile', '$stateParams',
                 console.log(model + " " + mark_up);
                 mark_up.forEach(function(x) {
                   $('#selections_for_dropdown').append($compile(x)($scope));
+                  
                 });
 
-        }, true);
-  } 
+        };
+  
+        if($scope.answer_type  == "Radio") {
+           document.getElementById('selections_for_radio').innerHTML = "";
+            var mark_up = [];
+                 for(var i = 0; i <= $scope.choice_amount - 1 ; i++) {
+                  var model = `choice${[i]}`
+                  var innerHT = `<input type="text" class="form-control" ng-model="${model}" ></input>`
+                  mark_up.push(innerHT);
+                }
+                console.log(model + " " + mark_up);
+                mark_up.forEach(function(x) {
+                  $('#selections_for_radio').append($compile(x)($scope));
+                });
+        };
+      }, true);
+
+  
+  }
+            
+  
 
 
 
