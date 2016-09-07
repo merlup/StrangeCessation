@@ -59,10 +59,10 @@
                <% if question.answer_type == "Regular" %> 
                 <%= ff.text_field :answer, class: 'form-control' %>
                 <% elsif question.answer_type == "Dropdown" %>
-                    <%= ff.collection_select( :answer, question.choices[0..question.choices.length-2] , :id, :body, {:selected => question.choices[0]}) %>
+                    <%= ff.collection_select( :answer, question.choices[0..question.choices.length-2] , :body, :body, {:selected => question.choices[0]}) %>
                 <% elsif question.answer_type == "Radio" %>
                   
-                 <%= ff.collection_radio_buttons( :answer, question.choices[0..question.choices.length-2] , :id, :body, {:selected => question.choices[0]}) %>
+                 <%= ff.collection_radio_buttons( :answer, question.choices[0..question.choices.length-2] , :body, :body, {:selected => question.choices[0]}) %>
                  
                 <% else %>
                  <%= ff.text_field :answer, class: 'form-control' %>
